@@ -1,0 +1,6 @@
+This favicon was generated using the following font:
+
+- Font Title: Nunito Sans
+- Font Author: undefined
+- Font Source: https://fonts.gstatic.com/s/nunitosans/v15/pe1mMImSLYBIv1o4X1M8ce2xCx3yop4tQpF_MeTm0lfGWVpNn64CL7U8upHZIbMV51Q42ptCp5F5bxqqtQ1yiU4G1ilntF8kA_Ykqw.ttf
+- Font License: undefined)
