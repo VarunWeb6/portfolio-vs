@@ -8,7 +8,7 @@ const ExperienceCard = ({
   description,
   icon: Icon,
 }) => (
-  <div className="group relative overflow-hidden transform hover:-translate-y-2 transition-all duration-300">
+  <div className="group relative overflow-hidden transform hover:-translate-y-2 transition-all duration-300 select-none">
     {/* Glass morphism effect */}
     <div className="absolute inset-0 backdrop-blur-lg bg-white/5 rounded-lg" />
 

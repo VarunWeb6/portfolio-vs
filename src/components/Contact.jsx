@@ -44,7 +44,7 @@ export default function Contact() {
   };
 
   return (
-    <main className="min-h-screen bg-gray-900 text-white flex items-center justify-center p-6">
+    <main className="min-h-screen bg-gray-900 text-white flex items-center justify-center p-6 select-none">
       <form
         onSubmit={handleSubmit}
         className="w-full max-w-lg p-6 bg-gray-800 rounded-lg shadow-lg space-y-4"

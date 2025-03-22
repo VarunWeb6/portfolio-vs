@@ -60,7 +60,7 @@ const EducationSection = () => {
 
   return (
     <section
-      className="min-h-screen relative overflow-hidden py-40 bg-gradient-to-b from-[#020617] via-[#0a0f1f] to-[#000D1A]/90"
+      className="min-h-screen relative overflow-hidden py-40 bg-gradient-to-b from-[#020617] via-[#0a0f1f] to-[#000D1A]/90 select-none"
     >
       <div className="max-w-6xl mx-auto px-4 relative z-10">
         <motion.div

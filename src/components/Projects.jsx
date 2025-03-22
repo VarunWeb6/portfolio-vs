@@ -73,7 +73,7 @@ const ProjectShowcase = () => {
   return (
     <div
       className="pt-40 min-h-screen bg-gradient-to-b from-[#020617] via-[#0a0f1f] to-[#000D1A]/90
- p-8 text-slate-100"
+ p-8 text-slate-100 select-none"
     >
       <div className="max-w-7xl mx-auto space-y-12">
         {projects.map((project, index) => (
