@@ -59,7 +59,7 @@ const ExperienceSection = () => {
       company: "Nervesparks ",
       period: "Nov 2024 - Present",
       description:
-        "Worked on developing and customizing WordPress websites for clients globally.",
+        "Worked on developing and customizing AI Solutions for clients globally.",
     },
     {
       icon: Layers,
