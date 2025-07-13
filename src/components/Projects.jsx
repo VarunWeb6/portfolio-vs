@@ -89,7 +89,25 @@ const ProjectShowcase = () => {
       },
       image: Portfolio, // replace with your imported image
       featured: true
-    }
+    },
+    {
+  "title": "InstaTube Downloader: Full-Stack Video Downloader App",
+  "description": "A full-stack application that allows authenticated users to download Instagram Reels and YouTube videos by URL. The backend is built with Python and FastAPI, providing real-time download progress via WebSockets. The frontend uses Streamlit for a clean, responsive, and professional interface, with user authentication handled by Clerk.",
+  "tags": [
+    "Python",
+    "FastAPI",
+    "Streamlit",
+    "yt-dlp",
+    "Clerk Auth",
+    "WebSockets"
+  ],
+  "links": {
+    // "github": "https://github.com/your-username/video-downloader-app",
+    // "demo": "https://your-streamlit-app-url.com/"
+  },
+  // "image": "InstaTubeDownloader",
+  "featured": true
+}
 
 
   ];
