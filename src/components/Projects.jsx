@@ -4,6 +4,8 @@ import SaasAI from "../assets/images/saasAI.png";
 import project3D_logo from "../assets/images/3D_logo.png";
 import Blog from "../assets/images/blog.png";
 import Jobportal from "../assets/images/job_portal.png";
+import Multinenat from "../assets/images/Multinenat.png";
+import Portfolio from "../assets/images/Portfolio.png";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const MacOsButtons = () => (
@@ -63,12 +65,35 @@ const ProjectShowcase = () => {
       },
       image: Jobportal,
       featured: true,
+    },
+    {
+      title: "Multi-Tenant Article Platform",
+      description:
+        "A modern multi-tenant blog platform that lets organizations publish and manage articles under custom domains. Features seamless authentication with Clerk, type-safe ORM with Drizzle, and elegant UI components styled like shadcn. Built using the latest Next.js App Router, it supports organization switching, role-based access, and scoped content delivery — perfect for teams and SaaS platforms.",
+      tags: ["Next.js", "Drizzle ORM", "Clerk Auth", "Multi-Tenant", "Custom Domains", "Blog Platform", "SaaS"],
+      links: {
+        github: "https://github.com/VarunWeb6/multi-tenant-blog.git", // replace with your repo
+        demo: "https://multi-tenant-blog-qyr8.vercel.app/", // replace with live demo if hosted
+      },
+      image: Multinenat, // replace with your imported image or banner
+      featured: true
+    },
+    {
+      title: "Personal Developer Portfolio",
+      description:
+        "A sleek and interactive React-based portfolio designed to showcase projects, skills, and contact details with 3D components, animated transitions, and a modern UI. Built with EmailJS for real-time contact form handling and React Icons for visual flair. Ideal for freelancers and developers looking to impress potential clients or recruiters with a clean, responsive presence.",
+      tags: ["React.js", "3D Components", "EmailJS", "React Icons", "Portfolio", "Animations"],
+      links: {
+        github: "https://github.com/VarunWeb6/portfolio-vs.git", // replace with your repo
+        demo: "https://portfolio-vs-seven.vercel.app/", // replace with your live site
+      },
+      image: Portfolio, // replace with your imported image
+      featured: true
     }
-    
-    
-    
+
+
   ];
-  
+
 
   return (
     <div
@@ -82,13 +107,14 @@ const ProjectShowcase = () => {
             className="flex flex-col md:flex-row items-center group rounded-lg p-[2px] bg-gradient-to-r from-cyan-500 via-purple-500 to-emerald-500 bg-[length:400%_400%] animate-gradient-xy hover:bg-[length:100%_100%] transition-all duration-700 shadow-lg"
           >
             {/* Image Section */}
-            <div className="md:w-1/2 overflow-hidden rounded-lg">
+            <div className="md:w-1/2 overflow-hidden rounded-lg max-h-[400px]">
               <img
                 src={project.image}
                 alt={project.title}
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
               />
             </div>
+
 
             {/* Text Section */}
             <Card className="md:w-1/2 bg-gradient-to-br from-slate-800 to-gray-900 rounded-lg overflow-hidden shadow-md transition-transform duration-500 group-hover:scale-105 group-hover:shadow-2xl p-6">
