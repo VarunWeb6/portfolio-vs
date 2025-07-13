@@ -96,82 +96,74 @@ const ProjectShowcase = () => {
 
 
   return (
-    <div
-      className="pt-40 min-h-screen bg-gradient-to-b from-[#020617] via-[#0a0f1f] to-[#000D1A]/90
- p-8 text-slate-100 select-none"
-    >
-      <div className="max-w-7xl mx-auto space-y-12">
+    <section className="pt-32 pb-24 px-6 bg-gradient-to-b from-[#0b1120] via-[#0d1224] to-[#020617] min-h-screen text-white">
+      <div className="max-w-7xl mx-auto space-y-20">
         {projects.map((project, index) => (
           <div
             key={index}
-            className="flex flex-col md:flex-row items-center group rounded-lg p-[2px] bg-gradient-to-r from-cyan-500 via-purple-500 to-emerald-500 bg-[length:400%_400%] animate-gradient-xy hover:bg-[length:100%_100%] transition-all duration-700 shadow-lg"
+            className="flex flex-col md:flex-row items-center md:items-stretch group rounded-2xl bg-gradient-to-r from-[#1e293b] to-[#0f172a] overflow-hidden shadow-xl ring-1 ring-slate-700/40 transition-all duration-700 hover:scale-[1.01]"
           >
             {/* Image Section */}
-            <div className="md:w-1/2 overflow-hidden rounded-lg max-h-[400px]">
+            <div className="md:w-1/2 w-full bg-black/20 overflow-hidden">
               <img
                 src={project.image}
                 alt={project.title}
-                className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
             </div>
-
-
+  
             {/* Text Section */}
-            <Card className="md:w-1/2 bg-gradient-to-br from-slate-800 to-gray-900 rounded-lg overflow-hidden shadow-md transition-transform duration-500 group-hover:scale-105 group-hover:shadow-2xl p-6">
+            <div className="md:w-1/2 w-full flex flex-col justify-between p-8 space-y-6 bg-black/20 backdrop-blur-md">
               <MacOsButtons />
-
-              <CardHeader>
-                <div className="flex justify-between items-start">
-                  <div>
-                    <div className="text-emerald-400 text-sm font-mono mb-2 tracking-wide uppercase">
-                      Featured Project
-                    </div>
-                    <CardTitle className="text-slate-100 text-3xl font-bold">
-                      {project.title}
-                    </CardTitle>
-                  </div>
-                  <div className="flex gap-4">
-                    <a
-                      href={project.links.github}
-                      className="text-slate-400 hover:text-emerald-400 transition-all duration-300 transform hover:scale-125"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Github size={22} />
-                    </a>
-                    <a
-                      href={project.links.demo}
-                      className="text-slate-400 hover:text-emerald-400 transition-all duration-300 transform hover:scale-125"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <ExternalLink size={22} />
-                    </a>
-                  </div>
-                </div>
-              </CardHeader>
-
-              <CardContent className="mt-4">
-                <p className="text-slate-300 mb-6 text-lg leading-relaxed">
+  
+              <div>
+                <p className="text-sm font-semibold text-emerald-400 uppercase tracking-wide mb-2">
+                  Featured Project
+                </p>
+                <h3 className="text-2xl md:text-3xl font-bold text-white leading-snug">
+                  {project.title}
+                </h3>
+                <p className="text-slate-300 mt-4 leading-relaxed text-base">
                   {project.description}
                 </p>
-                <div className="flex flex-wrap gap-3">
-                  {project.tags.map((tag, tagIndex) => (
-                    <span
-                      key={tagIndex}
-                      className="px-3 py-1 text-sm font-medium rounded-full bg-gradient-to-r from-emerald-400 to-cyan-500 text-gray-900 shadow-lg hover:shadow-xl hover:scale-105 transform transition-all duration-300"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+              </div>
+  
+              <div className="flex flex-wrap gap-2">
+                {project.tags.map((tag, tagIndex) => (
+                  <span
+                    key={tagIndex}
+                    className="px-3 py-1 text-sm rounded-full border border-emerald-500/30 bg-slate-800 text-emerald-300 font-medium tracking-wide shadow-sm"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+  
+              <div className="flex items-center gap-6 pt-2">
+                <a
+                  href={project.links.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-slate-400 hover:text-emerald-400 transition-transform hover:scale-125"
+                >
+                  <Github size={22} />
+                </a>
+                <a
+                  href={project.links.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-slate-400 hover:text-emerald-400 transition-transform hover:scale-125"
+                >
+                  <ExternalLink size={22} />
+                </a>
+              </div>
+            </div>
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
+  
 };
 
 export default ProjectShowcase;
