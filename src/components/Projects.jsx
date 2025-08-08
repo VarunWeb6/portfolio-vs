@@ -4,8 +4,8 @@ import SaasAI from "../assets/images/saasAI.png";
 import project3D_logo from "../assets/images/3D_logo.png";
 import Blog from "../assets/images/blog.png";
 import Jobportal from "../assets/images/job_portal.png";
-import Multinenat from "../assets/images/Multinenat.png";
-import Portfolio from "../assets/images/Portfolio.png";
+import Multinenat from "../assets/images/multinenat.png";
+import Portfolio from "../assets/images/portfolio.png";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const MacOsButtons = () => (
