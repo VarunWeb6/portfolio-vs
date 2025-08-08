@@ -22,7 +22,7 @@ const ExperienceCard = ({
         <Icon className="w-12 h-12 text-cyan-400 relative z-10 transform group-hover:rotate-12 transition-transform duration-300" />
       </div>
 
-      {/* Content with improved typography */}
+      {/* Content */}
       <div className="space-y-3">
         <h3 className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
           {title}
@@ -55,11 +55,11 @@ const ExperienceSection = () => {
   const experiences = [
     {
       icon: Network,
-      title: "Full Stack Developer Intern",
-      company: "Nervesparks ",
+      title: "Associate Software Engineer",
+      company: "Nervesparks",
       period: "Nov 2024 - Present",
       description:
-        "Worked on developing and customizing AI Solutions for clients globally.",
+        "Developed and customized AI solutions including offline LLMs, AI agents (LangChain, LangGraph), and proof-of-concepts like NLP translation tools and AI-powered QBMS.",
     },
     {
       icon: Layers,
@@ -67,25 +67,23 @@ const ExperienceSection = () => {
       company: "Manav Rachna University",
       period: "Sept 2024 - Nov 2024",
       description:
-        "Assisted in building and optimizing user interfaces with a focus on responsive and interactive designs.",
+        "Built and optimized the Student Welfare Department website using SvelteJS, implemented a feedback module to boost teacher–student engagement, and improved SEO/AEO performance.",
     },
     {
       icon: Code2,
       title: "Full Stack Developer Intern",
       company: "Cognifyz",
-      period: "March 2024 - July 2024",
+      period: "June 2024 - Aug 2024",
       description:
-        "Contributed to developing their task libraries and enhancing framework functionalities.",
+        "Developed a full-stack Learning Management System (LMS) with Node.js, React.js, MongoDB, Express, and Redis for caching, increasing visibility of training modules.",
     },
   ];
 
   return (
     <>
-      <div className="min-h-screen bg-gradient-to-b  relative overflow-hidden pt-32 pb-20">
+      <div className="min-h-screen bg-gradient-to-b relative overflow-hidden pt-32 pb-20">
         {/* Animated gradient background */}
-        <div
-          className="absolute inset-0 bg-gradient-to-b from-[#020617] via-[#0a0f1f] to-[#000D1A]/90"
-        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#020617] via-[#0a0f1f] to-[#000D1A]/90" />
 
         {/* Animated particles */}
         <div className="absolute inset-0">
@@ -104,7 +102,7 @@ const ExperienceSection = () => {
 
         {/* Content container */}
         <div className="relative container mx-auto px-6 mt-10">
-          {/* Section header with enhanced effects */}
+          {/* Section header */}
           <div className="flex flex-col items-center space-y-8 mb-20">
             <div className="relative">
               <h2 className="text-5xl md:text-7xl font-black text-transparent bg-gradient-to-r from-teal-400 to-blue-500 bg-clip-text text-center">
@@ -117,7 +115,7 @@ const ExperienceSection = () => {
             </p>
           </div>
 
-          {/* Experience grid with improved layout */}
+          {/* Experience grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
             {experiences.map((exp, index) => (
               <ExperienceCard key={index} {...exp} />
@@ -125,7 +123,7 @@ const ExperienceSection = () => {
           </div>
         </div>
 
-        {/* Enhanced background effects */}
+        {/* Background effects */}
         <div className="absolute top-20 left-20 w-96 h-96 bg-cyan-500/10 rounded-full filter blur-3xl animate-pulse" />
         <div className="absolute bottom-20 right-20 w-96 h-96 bg-purple-500/10 rounded-full filter blur-3xl animate-pulse delay-1000" />
       </div>
