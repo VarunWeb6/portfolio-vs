@@ -6,6 +6,7 @@ import Blog from "../assets/images/blog.png";
 import Jobportal from "../assets/images/job_portal.png";
 import Multinenat from "../assets/images/multinenat.png";
 import Portfolio from "../assets/images/portfolio.png";
+import Gaming from "../assets/images/gaming.png";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const MacOsButtons = () => (
@@ -41,6 +42,45 @@ const ProjectShowcase = () => {
       },
       image: SaasAI,
       featured: true,
+    },
+    {
+      "title": "GameQuartz : Trending Games Finder — By Genre, Platform & Store",
+      "description": "Discover current trending games tailored to your favorite genres and platforms. GameQuartz fetches live game data (trending, new releases, top-rated), shows which platforms a game supports, and provides direct links to where you can download or play (Steam, Epic, GOG, PlayStation Store, Xbox Store, Nintendo eShop, App Store, Google Play). Responsive, performance-optimized, and built for cross-platform discovery.",
+      "tags": [
+        "React",
+        "RAWG API",
+        "Framer Motion",
+        "Tailwind CSS",
+        "PWA",
+        "Responsive",
+        "Performance"
+      ],
+      "links": {
+        "github": "https://github.com/VarunWeb6/Gaming-site.git",
+        "demo": "https://gaming-site-coral.vercel.app/",
+        // "api_reference": "https://rawg.io/apidocs"
+      },
+      "image": "GamingSitePreview",
+      "featured": true,
+      "features": [
+        "Fetches live trending & popular games (configurable 'trending' criteria)",
+        "Filter by genre, platform, release date, and search",
+        "Shows supported platforms and platform-specific badges/icons",
+        "Provides store links and direct download/play links when available (Steam, Epic, GOG, console stores, mobile stores)",
+        "Lazy-loaded, responsive cover images and optimized network requests",
+        "Progressive Web App ready for install and offline caching of recent queries",
+        "Accessible UI with keyboard/search-first experience and performance budgets"
+      ],
+      "platforms_supported": [
+        "PC",
+        "PlayStation",
+        "Xbox",
+        "Nintendo",
+        "iOS",
+        "Android",
+        "Web"
+      ],
+      image: Gaming,
     },
     {
       title: "Modern Blog App",
@@ -91,23 +131,23 @@ const ProjectShowcase = () => {
       featured: true
     },
     {
-  "title": "InstaTube Downloader: Full-Stack Video Downloader App",
-  "description": "A full-stack application that allows authenticated users to download Instagram Reels and YouTube videos by URL. The backend is built with Python and FastAPI, providing real-time download progress via WebSockets. The frontend uses Streamlit for a clean, responsive, and professional interface, with user authentication handled by Clerk.",
-  "tags": [
-    "Python",
-    "FastAPI",
-    "Streamlit",
-    "yt-dlp",
-    "Clerk Auth",
-    "WebSockets"
-  ],
-  "links": {
-    // "github": "https://github.com/your-username/video-downloader-app",
-    // "demo": "https://your-streamlit-app-url.com/"
-  },
-  // "image": "InstaTubeDownloader",
-  "featured": true
-}
+      "title": "InstaTube Downloader: Full-Stack Video Downloader App",
+      "description": "A full-stack application that allows authenticated users to download Instagram Reels and YouTube videos by URL. The backend is built with Python and FastAPI, providing real-time download progress via WebSockets. The frontend uses Streamlit for a clean, responsive, and professional interface, with user authentication handled by Clerk.",
+      "tags": [
+        "Python",
+        "FastAPI",
+        "Streamlit",
+        "yt-dlp",
+        "Clerk Auth",
+        "WebSockets"
+      ],
+      "links": {
+        // "github": "https://github.com/your-username/video-downloader-app",
+        // "demo": "https://your-streamlit-app-url.com/"
+      },
+      // "image": "InstaTubeDownloader",
+      "featured": true
+    }
 
 
   ];
@@ -129,11 +169,11 @@ const ProjectShowcase = () => {
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
             </div>
-  
+
             {/* Text Section */}
             <div className="md:w-1/2 w-full flex flex-col justify-between p-8 space-y-6 bg-black/20 backdrop-blur-md">
               <MacOsButtons />
-  
+
               <div>
                 <p className="text-sm font-semibold text-emerald-400 uppercase tracking-wide mb-2">
                   Featured Project
@@ -145,7 +185,7 @@ const ProjectShowcase = () => {
                   {project.description}
                 </p>
               </div>
-  
+
               <div className="flex flex-wrap gap-2">
                 {project.tags.map((tag, tagIndex) => (
                   <span
@@ -156,7 +196,7 @@ const ProjectShowcase = () => {
                   </span>
                 ))}
               </div>
-  
+
               <div className="flex items-center gap-6 pt-2">
                 <a
                   href={project.links.github}
@@ -181,7 +221,7 @@ const ProjectShowcase = () => {
       </div>
     </section>
   );
-  
+
 };
 
 export default ProjectShowcase;
