@@ -7,6 +7,7 @@ import Jobportal from "../assets/images/job_portal.png";
 import Multinenat from "../assets/images/multinenat.png";
 import Portfolio from "../assets/images/portfolio.png";
 import Gaming from "../assets/images/gaming.png";
+import Dashboard from "../assets/images/dashboard.png";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const MacOsButtons = () => (
@@ -30,6 +31,26 @@ const ProjectShowcase = () => {
       },
       image: project3D_logo,
       featured: true,
+    },
+    {
+      "title": "AI-Powered Executive Dashboard",
+      "description": "A professional, real-time executive dashboard that gives global stock overviews, AI-powered news summaries (via Hugging Face models), and live sports coverage — scores and headlines for football, cricket, baseball and more. Built for decision makers who need fast, distilled insights with smooth interactions and an elegant responsive UI.",
+      "tags": [
+        "React",
+        "AI",
+        "Hugging Face",
+        "Real-time",
+        "Stocks",
+        "News",
+        "Sports",
+        "Dashboard"
+      ],
+      "links": {
+        "github": "#",
+        "demo": "https://dashboard-frontend-beta-three.vercel.app"
+      },
+      "image": Dashboard,
+      "featured": true
     },
     {
       title: "Imaginfy : AI-Powered Text-to-Image Generator with Credit System",
