@@ -8,6 +8,7 @@ import Multinenat from "../assets/images/multinenat.png";
 import Portfolio from "../assets/images/portfolio.png";
 import Gaming from "../assets/images/gaming.png";
 import Dashboard from "../assets/images/dashboard.png";
+import ServerGenerator from "../assets/images/servergenerator.png";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const MacOsButtons = () => (
@@ -32,6 +33,24 @@ const ProjectShowcase = () => {
       image: project3D_logo,
       featured: true,
     },
+    {
+    "title": "Enhanced Node.js Server Generator",
+    "description": "A powerful command-line interface (CLI) tool for quickly scaffolding a customized Node.js backend. It offers a rich selection of templates (REST, GraphQL, Microservice), databases, authentication features, and development tools, providing a ready-to-go project with a robust folder structure and configuration.",
+    "tags": [
+      "Node.js",
+      "Express.js",
+      "CLI",
+      "Server Scaffolding",
+      "Backend",
+      "Automation"
+    ],
+    "links": {
+      "github": "https://github.com/VarunWeb6/server_generator.git",
+      "demo": "https://server-generator.vercel.app/"
+    },
+    "image": ServerGenerator,
+    "featured": true
+},
     {
       "title": "AI-Powered Executive Dashboard",
       "description": "A professional, real-time executive dashboard that gives global stock overviews, AI-powered news summaries (via Hugging Face models), and live sports coverage — scores and headlines for football, cricket, baseball and more. Built for decision makers who need fast, distilled insights with smooth interactions and an elegant responsive UI.",
