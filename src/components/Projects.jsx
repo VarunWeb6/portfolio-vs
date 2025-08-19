@@ -9,6 +9,7 @@ import Portfolio from "../assets/images/portfolio.png";
 import Gaming from "../assets/images/gaming.png";
 import Dashboard from "../assets/images/dashboard.png";
 import ServerGenerator from "../assets/images/servergenerator.png";
+import JobTracker from "../assets/images/job-tracker.png";
 import KBHUB from "../assets/images/kb-hub.png";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -55,6 +56,28 @@ const ProjectShowcase = () => {
       "image": ServerGenerator,
       "featured": true
     },
+    {
+  "title": "Professional Job Tracker with AI",
+  "description": "A comprehensive job search dashboard that allows you to track every stage of your applications (Applied, Interview Scheduled, Offer Received, Rejected). It features an integrated AI-powered tool to analyze your resume against job descriptions, providing key insights on keywords and ATS (Applicant Tracking System) points. The application is built with React.js on the frontend and a Node.js/Express.js backend, using MongoDB for data persistence and Redis for caching. Secure authentication is handled via OAuth, and the AI functionality is powered by OpenAI.",
+  "tags": [
+    "Job Tracking",
+    "AI",
+    "Resume Optimization",
+    "React.js",
+    "Node.js",
+    "MongoDB",
+    "Redis",
+    "OAuth",
+    "OpenAI"
+  ],
+  "links": {
+    "github": "https://github.com/VarunWeb6/Job_tracker.git",
+    "demo": "https://job-tracker-khaki.vercel.app/"
+  },
+  "image": JobTracker,
+  "featured": true
+}
+,
     {
       "title": "AI-Powered Knowledge Hub",
       "description": "A full-stack, scalable application that revolutionizes organizational knowledge management. The platform allows employees to securely upload various document types (PDF, DOCX) and query the content using natural language. The system leverages a Retrieval-Augmented Generation (RAG) architecture to provide precise, citable answers from the company's private knowledge base. The backend is engineered for performance and scalability, featuring an asynchronous job queue for document processing and a persistent Redis cache for real-time chat responses. The modern, professional frontend is built with React and Shadcn/ui to deliver a seamless user experience. This project demonstrates proficiency in building robust, AI-driven applications with a focus on clean code and efficient architecture.",
