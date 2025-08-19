@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Github, ExternalLink } from "lucide-react";
 import SaasAI from "../assets/images/saasAI.png";
 import project3D_logo from "../assets/images/3D_logo.png";
@@ -9,6 +9,7 @@ import Portfolio from "../assets/images/portfolio.png";
 import Gaming from "../assets/images/gaming.png";
 import Dashboard from "../assets/images/dashboard.png";
 import ServerGenerator from "../assets/images/servergenerator.png";
+import KBHUB from "../assets/images/kb-hub.png";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const MacOsButtons = () => (
@@ -20,6 +21,9 @@ const MacOsButtons = () => (
 );
 
 const ProjectShowcase = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const projectsPerPage = 4;
+
   const projects = [
     {
       title: "3D Website Using Framer-motion",
@@ -34,23 +38,48 @@ const ProjectShowcase = () => {
       featured: true,
     },
     {
-    "title": "Enhanced Node.js Server Generator",
-    "description": "A powerful command-line interface (CLI) tool for quickly scaffolding a customized Node.js backend. It offers a rich selection of templates (REST, GraphQL, Microservice), databases, authentication features, and development tools, providing a ready-to-go project with a robust folder structure and configuration.",
-    "tags": [
-      "Node.js",
-      "Express.js",
-      "CLI",
-      "Server Scaffolding",
-      "Backend",
-      "Automation"
-    ],
-    "links": {
-      "github": "https://github.com/VarunWeb6/server_generator.git",
-      "demo": "https://server-generator.vercel.app/"
+      "title": "Enhanced Node.js Server Generator",
+      "description": "A powerful command-line interface (CLI) tool for quickly scaffolding a customized Node.js backend. It offers a rich selection of templates (REST, GraphQL, Microservice), databases, authentication features, and development tools, providing a ready-to-go project with a robust folder structure and configuration.",
+      "tags": [
+        "Node.js",
+        "Express.js",
+        "CLI",
+        "Server Scaffolding",
+        "Backend",
+        "Automation"
+      ],
+      "links": {
+        "github": "https://github.com/VarunWeb6/server_generator.git",
+        "demo": "https://server-generator.vercel.app/"
+      },
+      "image": ServerGenerator,
+      "featured": true
     },
-    "image": ServerGenerator,
-    "featured": true
-},
+    {
+      "title": "AI-Powered Knowledge Hub",
+      "description": "A full-stack, scalable application that revolutionizes organizational knowledge management. The platform allows employees to securely upload various document types (PDF, DOCX) and query the content using natural language. The system leverages a Retrieval-Augmented Generation (RAG) architecture to provide precise, citable answers from the company's private knowledge base. The backend is engineered for performance and scalability, featuring an asynchronous job queue for document processing and a persistent Redis cache for real-time chat responses. The modern, professional frontend is built with React and Shadcn/ui to deliver a seamless user experience. This project demonstrates proficiency in building robust, AI-driven applications with a focus on clean code and efficient architecture.",
+      "tags": [
+        "Next.js",
+        "React",
+        "Node.js",
+        "Express",
+        "PostgreSQL",
+        "pgvector",
+        "Gemini API",
+        "RAG",
+        "BullMQ",
+        "Redis",
+        "Full-Stack",
+        "Scalability"
+      ],
+      "links": {
+        "github": "https://github.com/VarunWeb6/knowledge-hub-frontend.git",
+        "demo": "https://knowledge-hub-frontend-rh7e.vercel.app/"
+      },
+      "image": KBHUB,
+      "featured": true
+    },
+
     {
       "title": "AI-Powered Executive Dashboard",
       "description": "A professional, real-time executive dashboard that gives global stock overviews, AI-powered news summaries (via Hugging Face models), and live sports coverage — scores and headlines for football, cricket, baseball and more. Built for decision makers who need fast, distilled insights with smooth interactions and an elegant responsive UI.",
@@ -188,15 +217,38 @@ const ProjectShowcase = () => {
       // "image": "InstaTubeDownloader",
       "featured": true
     }
-
-
   ];
 
+  // Logic for displaying projects
+  const indexOfLastProject = currentPage * projectsPerPage;
+  const indexOfFirstProject = indexOfLastProject - projectsPerPage;
+  const currentProjects = projects.slice(indexOfFirstProject, indexOfLastProject);
+
+  // Logic for displaying page numbers
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(projects.length / projectsPerPage); i++) {
+    pageNumbers.push(i);
+  }
+
+  const renderPageNumbers = pageNumbers.map(number => {
+    return (
+      <button
+        key={number}
+        onClick={() => setCurrentPage(number)}
+        className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold text-lg transition-colors duration-300 ${currentPage === number
+            ? "bg-emerald-500 text-white shadow-lg scale-110"
+            : "bg-slate-800 text-slate-400 hover:bg-slate-700"
+          }`}
+      >
+        {number}
+      </button>
+    );
+  });
 
   return (
     <section className="pt-32 pb-24 px-6 bg-gradient-to-b from-[#0b1120] via-[#0d1224] to-[#020617] min-h-screen text-white">
       <div className="max-w-7xl mx-auto space-y-20">
-        {projects.map((project, index) => (
+        {currentProjects.map((project, index) => (
           <div
             key={index}
             className="flex flex-col md:flex-row items-center md:items-stretch group rounded-2xl bg-gradient-to-r from-[#1e293b] to-[#0f172a] overflow-hidden shadow-xl ring-1 ring-slate-700/40 transition-all duration-700 hover:scale-[1.01]"
@@ -259,9 +311,13 @@ const ProjectShowcase = () => {
           </div>
         ))}
       </div>
+
+      {/* Pagination Controls */}
+      <div className="flex justify-center mt-16 space-x-4">
+        {renderPageNumbers}
+      </div>
     </section>
   );
-
 };
 
 export default ProjectShowcase;
