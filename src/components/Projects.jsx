@@ -152,7 +152,6 @@ const ProjectShowcase = () => {
         "demo": "https://gaming-site-coral.vercel.app/",
         // "api_reference": "https://rawg.io/apidocs"
       },
-      "image": "GamingSitePreview",
       "featured": true,
       "features": [
         "Fetches live trending & popular games (configurable 'trending' criteria)",

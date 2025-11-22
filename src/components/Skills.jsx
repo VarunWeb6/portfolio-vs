@@ -26,6 +26,22 @@ import {
   SiFirebase,
   SiVercel,
   SiVite,
+  SiSvelte,
+  SiStreamlit,
+  SiVuedotjs,
+  SiAngular,
+  SiBootstrap,
+  SiMui,
+  SiGooglecloud,
+  SiDigitalocean,
+  SiJenkins,
+  SiTerraform,
+  SiAnsible,
+  SiGithubactions,
+  SiGitlab,
+  SiRedis,
+  SiExpress,
+  SiFastapi,
 } from "react-icons/si";
 import { TbBrandVscode } from "react-icons/tb";
 import { BsFileEarmarkCode, BsGrid1X2 } from "react-icons/bs";
@@ -48,16 +64,17 @@ const SkillCard = ({ icon: Icon, title, skills, color }) => (
       </div>
       <div className="flex flex-wrap gap-2">
         {skills.map((skill, index) => (
-          <Badge
-            key={index}
-            variant="outline"
-            className="group/badge relative bg-gray-800/50 hover:bg-gray-700/80 text-gray-100 border-gray-600 flex items-center gap-2 py-2 px-3 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/20"
-          >
-            <span className="transform group-hover/badge:scale-110 transition-transform duration-300">
-              {skill.icon}
-            </span>
-            <span className="font-medium">{skill.name}</span>
-          </Badge>
+          <div key={index} className="group/badge relative">
+            <Badge
+              variant="outline"
+              className="relative bg-gray-800/50 hover:bg-gray-700/80 text-gray-100 border-gray-600 flex items-center gap-2 py-2 px-3 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/20"
+            >
+              <span className="transform group-hover/badge:scale-110 transition-transform duration-300">
+                {skill.icon}
+              </span>
+              <span className="font-medium">{skill.name}</span>
+            </Badge>
+          </div>
         ))}
       </div>
     </CardContent>
@@ -77,12 +94,36 @@ const SkillsSection = () => {
           icon: <SiNextdotjs className="w-4 h-4 text-white" />,
         },
         {
+          name: "SvelteKit",
+          icon: <SiSvelte className="w-4 h-4 text-[#FF3E00]" />,
+        },
+        {
+          name: "Streamlit",
+          icon: <SiStreamlit className="w-4 h-4 text-[#FF4B4B]" />,
+        },
+        {
+          name: "Vue.js",
+          icon: <SiVuedotjs className="w-4 h-4 text-[#4FC08D]" />,
+        },
+        {
+          name: "Angular",
+          icon: <SiAngular className="w-4 h-4 text-[#DD0031]" />,
+        },
+        {
           name: "TypeScript",
           icon: <SiTypescript className="w-4 h-4 text-[#3178C6]" />,
         },
         {
           name: "Tailwind CSS",
           icon: <SiTailwindcss className="w-4 h-4 text-[#38B2AC]" />,
+        },
+        {
+          name: "Bootstrap",
+          icon: <SiBootstrap className="w-4 h-4 text-[#7952B3]" />,
+        },
+        {
+          name: "Material-UI",
+          icon: <SiMui className="w-4 h-4 text-[#007FFF]" />,
         },
         {
           name: "HTML5",
@@ -104,8 +145,16 @@ const SkillsSection = () => {
           icon: <FaNodeJs className="w-4 h-4 text-[#339933]" />,
         },
         {
+          name: "Express.js",
+          icon: <SiExpress className="w-4 h-4 text-white" />,
+        },
+        {
           name: "Python",
           icon: <FaPython className="w-4 h-4 text-[#3776AB]" />,
+        },
+        {
+          name: "FastAPI",
+          icon: <SiFastapi className="w-4 h-4 text-[#009688]" />,
         },
         {
           name: "PostgreSQL",
@@ -114,6 +163,10 @@ const SkillsSection = () => {
         {
           name: "MongoDB",
           icon: <SiMongodb className="w-4 h-4 text-[#47A248]" />,
+        },
+        {
+          name: "Redis",
+          icon: <SiRedis className="w-4 h-4 text-[#DC382D]" />,
         },
         {
           name: "REST APIs",
@@ -152,14 +205,42 @@ const SkillsSection = () => {
       skills: [
         { name: "AWS", icon: <FaAws className="w-4 h-4 text-[#FF9900]" /> },
         {
+          name: "Google Cloud",
+          icon: <SiGooglecloud className="w-4 h-4 text-[#4285F4]" />,
+        },
+        {
+          name: "Digital Ocean",
+          icon: <SiDigitalocean className="w-4 h-4 text-[#0080FF]" />,
+        },
+        {
           name: "Docker",
           icon: <FaDocker className="w-4 h-4 text-[#2496ED]" />,
         },
-        { name: "CI/CD", icon: <FcWorkflow className="w-4 h-4" /> },
         {
           name: "Kubernetes",
           icon: <BsGrid1X2 className="w-4 h-4 text-[#326CE5]" />,
         },
+        {
+          name: "Jenkins",
+          icon: <SiJenkins className="w-4 h-4 text-[#D24939]" />,
+        },
+        {
+          name: "Terraform",
+          icon: <SiTerraform className="w-4 h-4 text-[#7B42BC]" />,
+        },
+        {
+          name: "Ansible",
+          icon: <SiAnsible className="w-4 h-4 text-[#EE0000]" />,
+        },
+        {
+          name: "GitHub Actions",
+          icon: <SiGithubactions className="w-4 h-4 text-white" />,
+        },
+        {
+          name: "GitLab CI",
+          icon: <SiGitlab className="w-4 h-4 text-[#FC6D26]" />,
+        },
+        { name: "CI/CD", icon: <FcWorkflow className="w-4 h-4" /> },
         { name: "Git", icon: <FaGitAlt className="w-4 h-4 text-[#F05032]" /> },
         { name: "Linux", icon: <FaLinux className="w-4 h-4 text-[#FCC624]" /> },
       ],
