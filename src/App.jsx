@@ -7,6 +7,10 @@ import Experience from "./components/Experience";
 import Education from "./components/Education";
 import Contact from "./components/Contact";
 import Projects from "./components/Projects";
+import Statistics from "./components/Statistics";
+import Certifications from "./components/Certifications";
+import Timeline from "./components/Timeline";
+import GitHubActivity from "./components/GitHubActivity";
 import { Route, Routes } from "react-router-dom";
 
 export default function App() {
@@ -34,6 +38,10 @@ export default function App() {
           <Route path="/education" element={<Education />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/projects" element={<Projects />} />
+          <Route path="/statistics" element={<Statistics />} />
+          <Route path="/certifications" element={<Certifications />} />
+          <Route path="/timeline" element={<Timeline />} />
+          <Route path="/github" element={<GitHubActivity />} />
         </Routes>
       )}
     </>
