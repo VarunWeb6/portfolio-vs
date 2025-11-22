@@ -41,7 +41,7 @@ const PortfolioPage = () => {
       <AboutMe />
       <Statistics />
       <Timeline />
-      <Certifications />
+      {/* <Certifications /> */}
       <GitHubActivity />
     </>
   );

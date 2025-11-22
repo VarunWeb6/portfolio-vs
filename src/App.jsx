@@ -39,7 +39,6 @@ export default function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/statistics" element={<Statistics />} />
-          <Route path="/certifications" element={<Certifications />} />
           <Route path="/timeline" element={<Timeline />} />
           <Route path="/github" element={<GitHubActivity />} />
         </Routes>

@@ -1,18 +1,20 @@
 import React from "react";
 import { Code2, FolderOpen, Users, TrendingUp, Award, Github } from "lucide-react";
 import { motion } from "framer-motion";
+import ScrollTilt3D from "./ScrollTilt3D";
 
 const StatCard = ({ icon: Icon, value, label, color, delay = 0 }) => {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay }}
-      className="group relative overflow-hidden"
-    >
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-      <div className="relative bg-gray-900/80 backdrop-blur-sm border border-gray-800/50 rounded-xl p-6 hover:border-blue-500/50 transition-all duration-300 hover:scale-105">
+    <ScrollTilt3D intensity={10}>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay }}
+        className="group relative overflow-hidden"
+      >
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="relative bg-gray-900/80 backdrop-blur-sm border border-gray-800/50 rounded-xl p-6 hover:border-blue-500/50 transition-all duration-300 hover:scale-105">
         <div className={`inline-flex p-3 rounded-lg ${color} mb-4`}>
           <Icon className="w-6 h-6" />
         </div>
@@ -23,7 +25,8 @@ const StatCard = ({ icon: Icon, value, label, color, delay = 0 }) => {
           <p className="text-gray-400 text-sm font-medium">{label}</p>
         </div>
       </div>
-    </motion.div>
+      </motion.div>
+    </ScrollTilt3D>
   );
 };
 
