@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import emailjs from "@emailjs/browser";
 import { Send, Mail, MapPin } from "lucide-react";
 
 export default function Contact() {
@@ -11,8 +10,9 @@ export default function Contact() {
   });
 
   const [status, setStatus] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const { name, email, subject, message } = formData;
@@ -22,25 +22,37 @@ export default function Contact() {
       return;
     }
 
-    emailjs
-      .send(
-        "service_ai090gq", 
-        "template_gjanxdq", 
-        {
-          from_name: name,
-          from_email: email,
+    setIsLoading(true);
+    setStatus(null);
+
+    try {
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
           subject,
           message,
-        },
-        "P0c5GEdEfTQq4FGOM"
-      )
-      .then(
-        () => {
-          setStatus("Message sent successfully!");
-          setFormData({ name: "", email: "", subject: "", message: "" });
-        },
-        () => setStatus("Failed to send. Please try again.")
-      );
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setStatus("Message sent successfully!");
+        setFormData({ name: "", email: "", subject: "", message: "" });
+      } else {
+        setStatus(data.error || "Failed to send. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error sending email:", error);
+      setStatus("Failed to send. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -85,10 +97,11 @@ export default function Contact() {
 
         <button
           type="submit"
-          className="w-full bg-gradient-to-r from-blue-500 to-purple-500 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity flex items-center justify-center space-x-2"
+          disabled={isLoading}
+          className="w-full bg-gradient-to-r from-blue-500 to-purple-500 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          <span>Send Message</span>
-          <Send className="w-4 h-4" />
+          <span>{isLoading ? "Sending..." : "Send Message"}</span>
+          {!isLoading && <Send className="w-4 h-4" />}
         </button>
 
         {status && <p className="text-center mt-3 text-blue-400">{status}</p>}
