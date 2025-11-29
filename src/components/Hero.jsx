@@ -16,7 +16,7 @@ import resume from "../assets/Varun_resume.pdf";
 // AnimatedGrid Component
 const AnimatedGrid = () => {
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    <div className="absolute inset-0 overflow-hidden pointer-events-none ">
       <div className="relative w-full h-full">
         <div className="absolute inset-0 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]">
           <div className="absolute inset-0 grid grid-cols-[repeat(40,1fr)] opacity-20">
@@ -279,7 +279,7 @@ console.log(developer.available ? '✅ Available for opportunities' : '❌ Not a
                     <Github className="w-5 h-5" />
                   </a>
                   <a
-                    href="https://linkedin.com/in/varun-sharma"
+                    href="https://www.linkedin.com/in/varun-sharma-155a17225"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-2 rounded-lg bg-gray-800/50 border border-gray-700/50 text-gray-400 hover:text-white hover:border-blue-500/50 hover:bg-gray-800/80 transition-all duration-300"
@@ -288,7 +288,7 @@ console.log(developer.available ? '✅ Available for opportunities' : '❌ Not a
                     <Linkedin className="w-5 h-5" />
                   </a>
                   <a
-                    href="mailto:your.email@example.com"
+                    href="mailto:vvarunsharma64@gmail.com"
                     className="p-2 rounded-lg bg-gray-800/50 border border-gray-700/50 text-gray-400 hover:text-white hover:border-blue-500/50 hover:bg-gray-800/80 transition-all duration-300"
                     aria-label="Email"
                   >
