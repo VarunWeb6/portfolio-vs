@@ -11,6 +11,7 @@ import Dashboard from "../assets/images/dashboard.png";
 import ServerGenerator from "../assets/images/servergenerator.png";
 import JobTracker from "../assets/images/job-tracker.png";
 import KBHUB from "../assets/images/kb-hub.png";
+import EcomImg from "../assets/images/ecom.png"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const MacOsButtons = () => (
@@ -26,6 +27,26 @@ const ProjectShowcase = () => {
   const projectsPerPage = 4;
 
   const projects = [
+    {
+      title: "Shoekart",
+      description: "Welcome to Shoekart – where style meets comfort! Shoekart is an e-commerce platform dedicated to buying shoes, built on the MERN (MongoDB, Express.js, React.js, Node.js) stack. Shoekart not only provides a user-friendly interface for customers to browse and purchase shoes but also includes an admin section for managing products, orders, and users. Additionally, it features a secure payment section powered by Stripe.",
+      tags: [
+        "React.js",
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "JWT",
+        "Axios",
+        "Stripe",
+        "E-commerce"
+      ],
+      links: {
+        github: "https://github.com/VarunWeb6/shoekart-shopping-app/",
+        demo: "https://shoekart.vercel.app/"
+      },
+      image: EcomImg,
+      featured: true
+    },
     {
       title: "3D Website Using Framer-motion",
       description:
