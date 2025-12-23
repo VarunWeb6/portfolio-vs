@@ -42,7 +42,7 @@ const ProjectShowcase = () => {
       ],
       links: {
         github: "https://github.com/VarunWeb6/shoekart-shopping-app/",
-        demo: "https://shoekart.vercel.app/"
+        demo: "https://shoekart-shopping-app.vercel.app/"
       },
       image: EcomImg,
       featured: true
