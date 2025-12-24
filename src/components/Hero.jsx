@@ -298,7 +298,7 @@ console.log('Looking for a developer?');
               </motion.div>
             </motion.div>
 
-            {/* Right column - Code window */}
+            {/* Right column - Code windows (three windows)*/}
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
