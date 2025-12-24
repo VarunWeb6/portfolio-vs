@@ -16,7 +16,7 @@ import resume from "../assets/Varun_resume.pdf";
 // AnimatedGrid Component
 const AnimatedGrid = () => {
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    <div className="absolute inset-0 overflow-hidden pointer-events-none ">
       <div className="relative w-full h-full">
         <div className="absolute inset-0 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]">
           <div className="absolute inset-0 grid grid-cols-[repeat(40,1fr)] opacity-20">
@@ -123,7 +123,7 @@ const developer = {
 };
 
 console.log('Looking for a developer?');
-console.log(developer.available ? '✅ Available for opportunities' : '❌ Not available');
+
   `);
 
   const codeRef = useRef(null);
@@ -279,7 +279,7 @@ console.log(developer.available ? '✅ Available for opportunities' : '❌ Not a
                     <Github className="w-5 h-5" />
                   </a>
                   <a
-                    href="https://linkedin.com/in/varun-sharma"
+                    href="https://www.linkedin.com/in/varun-sharma-155a17225"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-2 rounded-lg bg-gray-800/50 border border-gray-700/50 text-gray-400 hover:text-white hover:border-blue-500/50 hover:bg-gray-800/80 transition-all duration-300"
@@ -288,7 +288,7 @@ console.log(developer.available ? '✅ Available for opportunities' : '❌ Not a
                     <Linkedin className="w-5 h-5" />
                   </a>
                   <a
-                    href="mailto:your.email@example.com"
+                    href="mailto:vvarunsharma64@gmail.com"
                     className="p-2 rounded-lg bg-gray-800/50 border border-gray-700/50 text-gray-400 hover:text-white hover:border-blue-500/50 hover:bg-gray-800/80 transition-all duration-300"
                     aria-label="Email"
                   >
@@ -298,14 +298,14 @@ console.log(developer.available ? '✅ Available for opportunities' : '❌ Not a
               </motion.div>
             </motion.div>
 
-            {/* Right column - Code window */}
+            {/* Right column - Code windows (three windows)*/}
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
               className="w-full lg:w-1/2 mt-12 lg:mt-0 hidden md:block"
             >
-              <div className="gradient-border">
+              <div className="gradient-border scale-75">
                 <div className="code-window bg-[#0a0f1f] border border-gray-800/50 rounded-xl overflow-hidden shadow-2xl">
                   <div className="window-header bg-gray-900/50 border-b border-gray-800/50 px-4 py-3 flex items-center gap-2">
                     <div className="flex gap-2">
