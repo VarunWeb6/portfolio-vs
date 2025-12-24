@@ -123,7 +123,7 @@ const developer = {
 };
 
 console.log('Looking for a developer?');
-console.log(developer.available ? '✅ Available for opportunities' : '❌ Not available');
+
   `);
 
   const codeRef = useRef(null);
@@ -305,7 +305,7 @@ console.log(developer.available ? '✅ Available for opportunities' : '❌ Not a
               transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
               className="w-full lg:w-1/2 mt-12 lg:mt-0 hidden md:block"
             >
-              <div className="gradient-border">
+              <div className="gradient-border scale-75">
                 <div className="code-window bg-[#0a0f1f] border border-gray-800/50 rounded-xl overflow-hidden shadow-2xl">
                   <div className="window-header bg-gray-900/50 border-b border-gray-800/50 px-4 py-3 flex items-center gap-2">
                     <div className="flex gap-2">
