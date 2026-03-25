@@ -146,67 +146,140 @@ pre[class*="language-"] {
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
+    /* Neon Tokyo Palette */
+    --bg-primary: #0d0d12;
+    --bg-secondary: #15151e;
+    --bg-glass: rgba(13, 13, 18, 0.4);
+
+    --text-primary: #f0f0f5;
+    --text-secondary: #a1a1aa;
+
+    --accent: #ff2d78;
+    --accent-muted: rgba(255, 45, 120, 0.2);
+    --secondary: #00d4ff;
+
+    --border: rgba(161, 161, 170, 0.2);
+    --border-hover: rgba(255, 45, 120, 0.4);
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.5);
+    --shadow-glow: 0 0 40px var(--accent-muted);
+
+    /* Easing */
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+    /* Typography Scale */
+    --text-xs: clamp(0.694rem, 0.66rem + 0.18vw, 0.8rem);
+    --text-sm: clamp(0.833rem, 0.78rem + 0.28vw, 1rem);
+    --text-base: clamp(1rem, 0.93rem + 0.36vw, 1.2rem);
+    --text-lg: clamp(1.2rem, 1.1rem + 0.5vw, 1.5rem);
+    --text-xl: clamp(1.44rem, 1.27rem + 0.85vw, 1.95rem);
+    --text-2xl: clamp(1.728rem, 1.45rem + 1.39vw, 2.56rem);
+    --text-3xl: clamp(2.074rem, 1.63rem + 2.22vw, 3.38rem);
+    --text-4xl: clamp(2.488rem, 1.78rem + 3.54vw, 4.47rem);
+    --text-hero: clamp(3rem, 1.5rem + 6vw, 8rem);
     --radius: 0.5rem;
-  }
-  .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
   }
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
   body {
-    @apply bg-background text-foreground;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Outfit', sans-serif;
   }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: -0.03em;
+  }
+  * {
+    border-color: var(--border);
+  }
+}
+
+/* Background Textures */
+.neon-glow-bg {
+  background: radial-gradient(ellipse 60% 40% at 50% 0%, var(--accent-muted) 0%, transparent 70%),
+              radial-gradient(ellipse 40% 60% at 80% 100%, rgba(0, 212, 255, 0.08) 0%, transparent 70%),
+              var(--bg-primary);
+}
+
+.dot-grid {
+  background-image: radial-gradient(circle, var(--border) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.grain::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.4;
+}
+
+/* Base Buttons */
+.btn-primary {
+  padding: 0.875rem 2rem;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: var(--text-sm);
+  letter-spacing: 0.02em;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.25s var(--ease-out-expo);
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 24px var(--accent-muted);
+}
+
+.btn-ghost {
+  padding: 0.875rem 2rem;
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.25s var(--ease-out-expo);
+}
+.btn-ghost:hover {
+  border-color: var(--accent);
+  background: var(--bg-glass);
+}
+
+/* Animation utilities */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.stagger-in > * {
+  opacity: 0;
+  animation: fadeInUp 0.8s var(--ease-out-expo) forwards;
+}
+.stagger-in > *:nth-child(1) { animation-delay: 0ms; }
+.stagger-in > *:nth-child(2) { animation-delay: 100ms; }
+.stagger-in > *:nth-child(3) { animation-delay: 200ms; }
+.stagger-in > *:nth-child(4) { animation-delay: 300ms; }
+.stagger-in > *:nth-child(5) { animation-delay: 400ms; }
+
+.hover-lift {
+  transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s var(--ease-out-expo);
+}
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
 }
 /* Add these classes to adjust the grid colors in the top-left and bottom-right */
 .top-left-grid {

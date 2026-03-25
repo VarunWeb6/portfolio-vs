@@ -46,13 +46,13 @@ export default function Header() {
   ];
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-gray-900/95 backdrop-blur-md md:bg-transparent md:backdrop-blur-none">
+    <header className="fixed top-0 left-0 w-full z-50 bg-[#0d0d12]/80 backdrop-blur-md md:bg-transparent md:backdrop-blur-none">
       <div className="md:fixed md:top-4 md:left-1/2 md:transform md:-translate-x-1/2 w-full md:w-auto">
-        <div className="p-[2px] md:rounded-full bg-gradient-to-r from-emerald-400 via-cyan-500 to-indigo-500 animate-gradient-x">
-          <nav className="bg-gray-900/90 backdrop-blur-md md:rounded-full px-4 md:px-6 py-2.5">
+        <div className="p-[1px] md:rounded-full bg-gradient-to-r from-[var(--accent)] to-[var(--secondary)] animate-gradient-x">
+          <nav className="bg-[#0d0d12]/90 backdrop-blur-md md:rounded-full px-4 md:px-6 py-2.5">
             {/* Mobile Menu Button */}
             <div className="flex justify-between items-center md:hidden px-2">
-              <Link to="/" className="text-white font-bold">Portfolio</Link>
+              <Link to="/" className="text-white font-bold tracking-tight">Portfolio</Link>
               <button 
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className="text-white p-2"
@@ -77,8 +77,8 @@ export default function Header() {
                       hover:bg-white/10 
                       ${
                         activeLink === id
-                          ? "bg-white/15 text-white"
-                          : "text-gray-300 hover:text-white"
+                          ? "bg-[var(--accent-muted)] text-[var(--accent)]"
+                          : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
                       }
                     `}
                   >

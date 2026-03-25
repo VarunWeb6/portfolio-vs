@@ -1,6 +1,8 @@
 import React from "react";
 import { Code2, Activity, Cpu, Layers, Network, Binary } from "lucide-react";
 
+import { motion } from "framer-motion";
+
 const ExperienceCard = ({
   title,
   company,
@@ -8,61 +10,66 @@ const ExperienceCard = ({
   description,
   icon: Icon,
   achievements,
+  index
 }) => (
-  <div className="group relative overflow-hidden transform hover:-translate-y-2 transition-all duration-300 select-none">
-    {/* Glass morphism effect */}
-    <div className="absolute inset-0 backdrop-blur-lg bg-white/5 rounded-lg" />
-
-    {/* Animated gradient border */}
-    <div className="absolute -inset-[2px] bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 rounded-lg opacity-0 group-hover:opacity-100 animate-gradient-xy transition-all duration-500" />
-
-    <div className="relative bg-gray-900/90 rounded-lg p-8 h-full border border-gray-800/50 shadow-xl backdrop-blur-xl">
-      {/* Floating icon with pulse effect */}
-      <div className="relative mb-6">
-        <div className="absolute -inset-4 bg-gradient-to-r from-cyan-500 to-blue-500 opacity-25 rounded-full blur-xl group-hover:opacity-75 animate-pulse transition-all duration-500" />
-        <Icon className="w-12 h-12 text-cyan-400 relative z-10 transform group-hover:rotate-12 transition-transform duration-300" />
+  <motion.div
+    initial={{ opacity: 0, x: -50 }}
+    whileInView={{ opacity: 1, x: 0 }}
+    viewport={{ once: true, margin: "-100px" }}
+    transition={{ duration: 0.6, delay: index * 0.2, ease: [0.16, 1, 0.3, 1] }}
+    className="relative pl-8 md:pl-0"
+  >
+    {/* Timeline vertical line on Desktop */}
+    <div className="hidden md:block absolute left-[50%] top-0 bottom-0 w-px bg-gradient-to-b from-[var(--accent)]/50 via-[var(--secondary)]/20 to-transparent transform -translate-x-1/2"></div>
+    
+    <div className={`md:flex items-center justify-between w-full ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
+      {/* Timeline Node */}
+      <div className="absolute left-0 md:left-1/2 w-8 h-8 rounded-full bg-[var(--bg-primary)] border-2 border-[var(--accent)] transform -translate-x-[15px] md:-translate-x-1/2 flex items-center justify-center z-20 shadow-[0_0_15px_var(--accent-muted)]">
+        <div className="w-3 h-3 rounded-full bg-[var(--secondary)] animate-pulse"></div>
       </div>
 
-      {/* Content */}
-      <div className="space-y-3">
-        <h3 className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-          {title}
-        </h3>
-        <div className="flex justify-between items-center text-gray-300">
-          <span className="font-semibold text-blue-400">{company}</span>
-          <span className="text-sm font-mono bg-blue-500/10 px-3 py-1 rounded-full">
-            {period}
-          </span>
-        </div>
-        <p className="text-gray-300 border-l-4 border-blue-500/50 pl-4 mt-4 leading-relaxed">
-          {description}
-        </p>
-        {achievements && achievements.length > 0 && (
-          <div className="mt-4 space-y-2">
-            <h4 className="text-sm font-semibold text-blue-400 mb-2">Key Achievements:</h4>
-            <ul className="space-y-1.5">
-              {achievements.map((achievement, idx) => (
-                <li key={idx} className="text-sm text-gray-400 flex items-start gap-2">
-                  <span className="text-blue-400 mt-1">▸</span>
-                  <span>{achievement}</span>
-                </li>
-              ))}
-            </ul>
+      <div className="md:w-[45%] mb-8 md:mb-0">
+        <div className="group relative bg-[var(--bg-secondary)] border border-[var(--border)] rounded-2xl p-8 hover:border-[var(--secondary)]/50 transition-all duration-500 hover:shadow-[0_10px_40px_-15px_var(--secondary)]">
+          
+          <div className="absolute inset-0 bg-gradient-to-br from-transparent via-[var(--secondary)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
+
+          <div className="relative z-10">
+            <div className="flex items-center justify-between mb-4">
+              <div className="p-3 bg-[var(--bg-primary)] rounded-lg border border-[var(--border)] text-[var(--secondary)]">
+                <Icon size={24} />
+              </div>
+              <span className="text-sm font-body font-bold text-[var(--accent)] tracking-widest uppercase bg-[var(--accent)]/10 px-3 py-1 rounded-full border border-[var(--accent)]/20">
+                {period}
+              </span>
+            </div>
+
+            <h3 className="text-3xl font-display font-bold text-white mb-1 group-hover:text-[var(--secondary)] transition-colors">
+              {title}
+            </h3>
+            <h4 className="text-xl font-body text-[var(--text-secondary)] mb-6">
+              {company}
+            </h4>
+            
+            <p className="font-body text-[var(--text-primary)] leading-relaxed mb-6">
+              {description}
+            </p>
+
+            {achievements && achievements.length > 0 && (
+              <ul className="space-y-3">
+                {achievements.map((achievement, idx) => (
+                  <li key={idx} className="text-sm font-body text-[var(--text-secondary)] flex items-start gap-3">
+                    <span className="text-[var(--secondary)] mt-1">✦</span>
+                    <span>{achievement}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
-        )}
+        </div>
       </div>
-
-      {/* Decorative elements */}
-      <div className="absolute top-4 right-4 w-20 h-20">
-        <div className="absolute top-0 right-0 w-6 h-[2px] bg-cyan-500/50" />
-        <div className="absolute top-0 right-0 w-[2px] h-6 bg-cyan-500/50" />
-      </div>
-      <div className="absolute bottom-4 left-4 w-20 h-20">
-        <div className="absolute bottom-0 left-0 w-6 h-[2px] bg-purple-500/50" />
-        <div className="absolute bottom-0 left-0 w-[2px] h-6 bg-purple-500/50" />
-      </div>
+      <div className="hidden md:block md:w-[45%]"></div>
     </div>
-  </div>
+  </motion.div>
 );
 
 const ExperienceSection = () => {
@@ -78,7 +85,7 @@ const ExperienceSection = () => {
         "Built 3+ AI-powered proof-of-concepts using LangChain and LangGraph",
         "Implemented offline LLM solutions reducing API costs by 40%",
         "Developed NLP translation tools supporting 5+ languages",
-        "Technologies: Python, LangChain, LangGraph, OpenAI, FastAPI, Docker"
+        "Stack: Python, LangChain, LangGraph, OpenAI, FastAPI, Docker"
       ],
     },
     {
@@ -92,7 +99,7 @@ const ExperienceSection = () => {
         "Improved website performance by 35% through optimization",
         "Increased teacher-student engagement by 50% with feedback module",
         "Enhanced SEO rankings resulting in 25% more organic traffic",
-        "Technologies: SvelteJS, JavaScript, CSS3, SEO optimization"
+        "Stack: SvelteJS, JavaScript, CSS3, SEO optimization"
       ],
     },
     {
@@ -106,60 +113,35 @@ const ExperienceSection = () => {
         "Built scalable LMS serving 1000+ users with Redis caching",
         "Reduced page load time by 45% through optimization",
         "Implemented RESTful APIs handling 10K+ requests daily",
-        "Technologies: Node.js, React.js, MongoDB, Express, Redis, JWT"
+        "Stack: Node.js, React.js, MongoDB, Express, Redis, JWT"
       ],
     },
   ];
 
   return (
-    <>
-      <div className="min-h-screen bg-gradient-to-b relative overflow-hidden pt-32 pb-20">
-        {/* Animated gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#020617] via-[#0a0f1f] to-[#000D1A]/90" />
-
-        {/* Animated particles */}
-        <div className="absolute inset-0">
-          {[...Array(20)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-2 h-2 bg-blue-500/20 rounded-full animate-float"
-              style={{
-                top: `${Math.random() * 100}%`,
-                left: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 5}s`,
-              }}
-            />
-          ))}
+    <main className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 bg-[var(--bg-primary)] min-h-screen relative z-10 w-full overflow-hidden">
+      {/* Background Textures */}
+      <div className="absolute inset-0 neon-glow-bg pointer-events-none opacity-40 mix-blend-screen"></div>
+      
+      <section className="max-w-7xl mx-auto relative z-10">
+        <div className="mb-24 text-center stagger-in">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-extrabold text-[var(--text-primary)] mb-6">
+            Professional <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--secondary)] to-[var(--accent)]">Journey</span>
+          </h2>
+          <p className="text-[var(--text-secondary)] font-body text-lg max-w-2xl mx-auto leading-relaxed">
+            A timeline of my professional roles, highlighting my growth, impact, and the technologies mastered along the way.
+          </p>
         </div>
 
-        {/* Content container */}
-        <div className="relative container mx-auto px-6 mt-10">
-          {/* Section header */}
-          <div className="flex flex-col items-center space-y-8 mb-20">
-            <div className="relative">
-              <h2 className="text-5xl md:text-7xl font-black text-transparent bg-gradient-to-r from-teal-400 to-blue-500 bg-clip-text text-center">
-                Professional Journey
-              </h2>
-              <div className="absolute inset-0 -z-10 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 blur-3xl rounded-full" />
-            </div>
-            <p className="text-lg md:text-xl text-gray-400 font-medium tracking-wide text-center max-w-2xl">
-              "Transforming ideas into digital reality, one project at a time"
-            </p>
-          </div>
-
-          {/* Experience grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
+        <div className="relative max-w-5xl mx-auto py-10">
+          <div className="space-y-12 md:space-y-0">
             {experiences.map((exp, index) => (
-              <ExperienceCard key={index} {...exp} />
+              <ExperienceCard key={index} index={index} {...exp} />
             ))}
           </div>
         </div>
-
-        {/* Background effects */}
-        <div className="absolute top-20 left-20 w-96 h-96 bg-cyan-500/10 rounded-full filter blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-purple-500/10 rounded-full filter blur-3xl animate-pulse delay-1000" />
-      </div>
-    </>
+      </section>
+    </main>
   );
 };
 
