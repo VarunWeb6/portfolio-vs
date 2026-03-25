@@ -117,7 +117,7 @@ export default function Contact() {
             </p>
           </div>
 
-          <div className="space-y-6 hidden md:block">
+          <div className="flex flex-col gap-6 mt-6 md:mt-0 mb-8 md:mb-0">
             <div className="flex items-center gap-4 text-[var(--text-secondary)] font-body hover:text-[var(--accent)] transition-colors cursor-pointer group">
               <div className="p-3 bg-[var(--bg-primary)] rounded-xl border border-[var(--border)] group-hover:border-[var(--accent)]/50 group-hover:shadow-[0_0_15px_var(--accent-muted)] transition-all">
                 <Mail className="w-5 h-5 text-white" />
