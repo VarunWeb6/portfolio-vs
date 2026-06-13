@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Code2, Activity, Cpu, Layers, Network, Binary } from "lucide-react";
-
-import { motion } from "framer-motion";
+import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 
 const ExperienceCard = ({
   title,
@@ -19,8 +18,6 @@ const ExperienceCard = ({
     transition={{ duration: 0.6, delay: index * 0.2, ease: [0.16, 1, 0.3, 1] }}
     className="relative pl-8 md:pl-0"
   >
-    {/* Timeline vertical line on Desktop */}
-    <div className="hidden md:block absolute left-[50%] top-0 bottom-0 w-px bg-gradient-to-b from-[var(--accent)]/50 via-[var(--secondary)]/20 to-transparent transform -translate-x-1/2"></div>
     
     <div className={`md:flex items-center justify-between w-full ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
       {/* Timeline Node */}
@@ -76,8 +73,8 @@ const ExperienceSection = () => {
   const experiences = [
     {
       icon: Network,
-      title: "Associate Software Engineer",
-      company: "Nervesparks",
+      title: "Software Engineer",
+      company: "Nervesparks India Private Limited",
       period: "Nov 2024 - Present",
       description:
         "Developed and customized AI solutions including offline LLMs, AI agents (LangChain, LangGraph), and proof-of-concepts like NLP translation tools and AI-powered QBMS.",
@@ -118,6 +115,18 @@ const ExperienceSection = () => {
     },
   ];
 
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start center", "end center"],
+  });
+
+  const scaleY = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
+
   return (
     <main className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 bg-[var(--bg-primary)] min-h-screen relative z-10 w-full overflow-hidden">
       {/* Background Textures */}
@@ -133,7 +142,15 @@ const ExperienceSection = () => {
           </p>
         </div>
 
-        <div className="relative max-w-5xl mx-auto py-10">
+        <div className="relative max-w-5xl mx-auto py-10" ref={containerRef}>
+          {/* Animated Timeline Progress Line (Desktop) */}
+          <div className="hidden md:block absolute left-[50%] top-0 bottom-0 w-px bg-[var(--border)] transform -translate-x-1/2 overflow-hidden">
+            <motion.div 
+              style={{ scaleY, transformOrigin: "top" }}
+              className="absolute inset-0 bg-gradient-to-b from-[var(--accent)] to-[var(--secondary)]"
+            />
+          </div>
+
           <div className="space-y-12 md:space-y-0">
             {experiences.map((exp, index) => (
               <ExperienceCard key={index} index={index} {...exp} />

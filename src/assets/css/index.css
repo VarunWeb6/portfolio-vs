@@ -185,6 +185,9 @@ pre[class*="language-"] {
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
@@ -197,6 +200,24 @@ pre[class*="language-"] {
   * {
     border-color: var(--border);
   }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
 }
 
 /* Background Textures */
