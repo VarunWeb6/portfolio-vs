@@ -74,6 +74,8 @@ const ProjectShowcase = () => {
     {
       title: "Shoekart",
       description: "Welcome to Shoekart – where style meets comfort! Shoekart is an e-commerce platform dedicated to buying shoes.",
+      problem: "Online shoppers need a fast catalog and checkout flow for browsing and purchasing footwear.",
+      impact: "Built a complete commerce flow with product browsing, cart handling, and Stripe payments.",
       tags: ["React", "Express", "MongoDB", "Stripe"],
       links: { github: "https://github.com/VarunWeb6/shoekart-shopping-app/", demo: "https://shoekart-shopping-app.vercel.app/" },
       image: EcomImg
@@ -81,6 +83,8 @@ const ProjectShowcase = () => {
     {
       title: "3D Website Using Framer",
       description: "A visually stunning, interactive 3D website built with Framer Motion and JavaScript.",
+      problem: "Static portfolios often fail to demonstrate motion design and interaction quality.",
+      impact: "Created an immersive animated site that showcases 3D interaction and frontend polish.",
       tags: ["Framer Motion", "3D Design"],
       links: { github: "https://github.com/VarunWeb6/3d_webdeisgn", demo: "https://3d-webdesign.vercel.app/" },
       image: project3D_logo
@@ -88,6 +92,8 @@ const ProjectShowcase = () => {
     {
       title: "Enhanced Server Generator",
       description: "A powerful CLI tool for quickly scaffolding a customized Node.js backend.",
+      problem: "Starting backend projects repeatedly costs time and creates inconsistent setup quality.",
+      impact: "Automated Node.js server scaffolding so new API projects start with a cleaner baseline.",
       tags: ["Node.js", "CLI", "Server Scaffolding"],
       links: { github: "https://github.com/VarunWeb6/server_generator.git", demo: "https://server-generator.vercel.app/" },
       image: ServerGenerator
@@ -95,6 +101,8 @@ const ProjectShowcase = () => {
     {
       title: "Job Tracker with AI",
       description: "A job search dashboard tracking application stages. It features an integrated AI-powered tool.",
+      problem: "Job seekers need one place to manage applications, stages, and next actions.",
+      impact: "Added AI assistance to a full tracking dashboard so users can organize applications faster.",
       tags: ["AI", "React", "MongoDB", "OpenAI"],
       links: { github: "https://github.com/VarunWeb6/Job_tracker.git", demo: "https://job-tracker-khaki.vercel.app/" },
       image: JobTracker
@@ -102,6 +110,8 @@ const ProjectShowcase = () => {
     {
       title: "AI Knowledge Hub",
       description: "A scalable platform using RAG to provide exact, citable answers from private knowledge bases.",
+      problem: "Teams lose time searching scattered internal documents and validating answers.",
+      impact: "Built a RAG workflow with citable responses for faster private knowledge retrieval.",
       tags: ["Next.js", "pgvector", "RAG", "Redis"],
       links: { github: "https://github.com/VarunWeb6/knowledge-hub-frontend.git", demo: "https://knowledge-hub-frontend-rh7e.vercel.app/" },
       image: KBHUB
@@ -109,20 +119,28 @@ const ProjectShowcase = () => {
     {
       title: "AI Executive Dashboard",
       description: "A professional dashboard for real-time global stock overviews and AI-powered news summaries.",
+      problem: "Market watchers need quick summaries alongside real-time stock context.",
+      impact: "Combined financial overview cards with AI news summaries for faster executive scanning.",
       tags: ["AI", "Real-time", "Dashboard"],
-      links: { github: "#", demo: "https://dashboard-frontend-beta-three.vercel.app" },
+      links: { demo: "https://dashboard-frontend-beta-three.vercel.app" },
+      status: "Repository private",
       image: Dashboard
     },
     {
       title: "InstaTube Downloader",
       description: "Full-stack application to download content backed by WebSockets for progress updates.",
+      problem: "Download workflows need visible progress instead of silent background processing.",
+      impact: "Used WebSockets to report download progress in real time across the full stack.",
       tags: ["Python", "FastAPI", "WebSockets"],
       links: {},
+      status: "Case study available on request",
       image: Multinenat
     },
     {
       title: "Imaginfy: AI Text-to-Image",
       description: "A powerful AI-powered text-to-image generator with a credit system, leveraging advanced machine learning models.",
+      problem: "AI generation tools need account, credit, and billing flows to work as a SaaS product.",
+      impact: "Built a text-to-image SaaS experience with authentication and credit-based usage.",
       tags: ["Next.js", "Clerk", "Drizzle", "AI"],
       links: { github: "https://github.com/VarunWeb6/saas-ai-platform", demo: "https://saas-ai-client.vercel.app/" },
       image: SaasAI
@@ -130,13 +148,18 @@ const ProjectShowcase = () => {
     {
       title: "Modern Blog App",
       description: "A sleek, responsive blog platform with smooth animations and an intuitive user experience.",
+      problem: "Content sites need clean reading flows, responsive layouts, and fast navigation.",
+      impact: "Designed a polished blog frontend with smooth transitions and readable layouts.",
       tags: ["React", "Framer Motion", "Tailwind"],
-      links: { github: "https://github.com/VarunWeb6/3d_webdeisgn", demo: "https://blog-front-end-v3k9.vercel.app/" },
+      links: { demo: "https://blog-front-end-v3k9.vercel.app/" },
+      status: "Repository private",
       image: Blog
     },
     {
        title: "Company Dashboard & Job Portal",
        description: "A comprehensive job search dashboard for tracking applications and managing company profiles.",
+       problem: "Recruiting workflows need separate views for companies, postings, and candidate activity.",
+       impact: "Built admin-facing job portal screens for company and application management.",
        tags: ["React", "Node.js", "MongoDB", "Express"],
        links: { github: "https://github.com/VarunWeb6/jobportal_frontend", demo: "https://jobportal-frontend-kappa.vercel.app/admin/companies" },
        image: Jobportal
@@ -144,6 +167,8 @@ const ProjectShowcase = () => {
     {
       title: "Gaming Website with Search",
       description: "An immersive gaming platform featuring search functionality and detailed game catalogs.",
+      problem: "Game discovery depends on fast search, useful metadata, and visual browsing.",
+      impact: "Created a searchable game catalog with responsive cards and API-backed content.",
       tags: ["React", "API", "Search"],
       links: { github: "https://github.com/VarunWeb6/gaming_website", demo: "https://gaming-site-coral.vercel.app/" },
       image: Gaming
@@ -151,6 +176,8 @@ const ProjectShowcase = () => {
     {
       title: "Personal Portfolio",
       description: "A professional developer portfolio showcasing projects with high-end animations and a 3D design.",
+      problem: "Recruiters need a fast way to verify skills, work samples, and contact details.",
+      impact: "Built a responsive portfolio with animated sections, project proof, and clear CTAs.",
       tags: ["React", "3D", "Framer Motion"],
       links: { github: "https://github.com/VarunWeb6/portfolio-vs.git", demo: "https://portfolio-vs-seven.vercel.app/" },
       image: Portfolio
@@ -220,10 +247,21 @@ const ProjectShowcase = () => {
                     {project.title}
                   </h3>
                   
+                  <p className={`text-[var(--text-secondary)] font-body mb-4 ${isLarge ? "text-sm line-clamp-3 max-w-md" : "text-xs line-clamp-2"}`}>
+                    {isLarge ? project.description : project.impact}
+                  </p>
+
                   {isLarge && (
-                    <p className="text-[var(--text-secondary)] font-body text-sm line-clamp-3 mb-4 max-w-md">
-                      {project.description}
-                    </p>
+                    <div className="mb-4 grid gap-2 text-xs font-body text-[var(--text-secondary)] sm:grid-cols-2">
+                      <div className="rounded-lg border border-[var(--border)] bg-[var(--bg-primary)]/70 p-3">
+                        <span className="block text-[var(--secondary)] font-semibold mb-1">Problem</span>
+                        <span className="line-clamp-2">{project.problem}</span>
+                      </div>
+                      <div className="rounded-lg border border-[var(--border)] bg-[var(--bg-primary)]/70 p-3">
+                        <span className="block text-[var(--accent)] font-semibold mb-1">Impact</span>
+                        <span className="line-clamp-2">{project.impact}</span>
+                      </div>
+                    </div>
                   )}
 
                   <div className="flex flex-wrap gap-2 mb-4">
@@ -238,16 +276,21 @@ const ProjectShowcase = () => {
                   </div>
 
                   {/* Links */}
-                  <div className="flex items-center gap-4 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                  <div className="flex items-center gap-4 opacity-100 translate-y-0 md:opacity-0 md:group-hover:opacity-100 md:transform md:translate-y-4 md:group-hover:translate-y-0 transition-all duration-300">
                     {project.links.github && (
-                      <a href={project.links.github} target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-[var(--accent)] text-white hover:scale-110 transition-transform shadow-[0_0_15px_var(--accent-muted)]">
+                      <a href={project.links.github} target="_blank" rel="noopener noreferrer" aria-label={`Open ${project.title} GitHub repository`} className="p-2 rounded-full bg-[var(--accent)] text-white hover:scale-110 transition-transform shadow-[0_0_15px_var(--accent-muted)]">
                         <Github size={18} />
                       </a>
                     )}
                     {project.links.demo && (
-                      <a href={project.links.demo} target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-[var(--text-primary)] text-[var(--bg-primary)] hover:scale-110 transition-transform">
+                      <a href={project.links.demo} target="_blank" rel="noopener noreferrer" aria-label={`Open ${project.title} live demo`} className="p-2 rounded-full bg-[var(--text-primary)] text-[var(--bg-primary)] hover:scale-110 transition-transform">
                         <ExternalLink size={18} />
                       </a>
+                    )}
+                    {project.status && (
+                      <span className="rounded-full border border-[var(--border)] bg-[var(--bg-primary)]/80 px-3 py-2 font-body text-xs text-[var(--text-secondary)] backdrop-blur-sm">
+                        {project.status}
+                      </span>
                     )}
                   </div>
                 </div>
