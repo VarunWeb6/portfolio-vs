@@ -16,6 +16,9 @@ import Hero from "./Hero";
 import JobTracker from "../assets/images/job-tracker.png";
 import KBHUB from "../assets/images/kb-hub.png";
 import Dashboard from "../assets/images/dashboard.png";
+import EcomImg from "../assets/images/ecom.png";
+import Gaming from "../assets/images/gaming.png";
+import Blog from "../assets/images/blog.png";
 
 const stats = [
   { value: "12+", label: "Shipped projects", icon: Code2 },
@@ -26,28 +29,28 @@ const stats = [
 
 const featuredProjects = [
   {
-    title: "AI Knowledge Hub",
+    title: "Shoekart",
     description:
-      "RAG platform that turns private knowledge bases into fast, citable answers for teams.",
-    image: KBHUB,
-    tags: ["Next.js", "pgvector", "RAG"],
-    demo: "https://knowledge-hub-frontend-rh7e.vercel.app/",
+      "E-commerce platform dedicated to buying shoes with catalog, cart handling, and Stripe payments.",
+    image: EcomImg,
+    tags: ["React", "Express", "MongoDB", "Stripe"],
+    demo: "https://shoekart-shopping-app.vercel.app/",
   },
   {
-    title: "Job Tracker with AI",
+    title: "Gaming Website with Search",
     description:
-      "Application workflow dashboard with AI assistance for tracking opportunities and next steps.",
-    image: JobTracker,
-    tags: ["React", "MongoDB", "OpenAI"],
-    demo: "https://job-tracker-khaki.vercel.app/",
+      "An immersive gaming platform featuring search functionality and detailed game catalogs.",
+    image: Gaming,
+    tags: ["React", "API", "Search"],
+    demo: "https://gaming-site-coral.vercel.app/",
   },
   {
-    title: "AI Executive Dashboard",
+    title: "Modern Blog App",
     description:
-      "Market dashboard with real-time stock views and AI-powered news summaries.",
-    image: Dashboard,
-    tags: ["AI", "Dashboard", "Real-time"],
-    demo: "https://dashboard-frontend-beta-three.vercel.app",
+      "A sleek, responsive blog platform with smooth animations and an intuitive user experience.",
+    image: Blog,
+    tags: ["React", "Framer Motion", "Tailwind"],
+    demo: "https://blog-front-end-v3k9.vercel.app/",
   },
 ];
 
