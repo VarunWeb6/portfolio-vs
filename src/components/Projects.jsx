@@ -124,14 +124,14 @@ const ProjectShowcase = () => {
       title: "Imaginfy: AI Text-to-Image",
       description: "A powerful AI-powered text-to-image generator with a credit system, leveraging advanced machine learning models.",
       tags: ["Next.js", "Clerk", "Drizzle", "AI"],
-      links: { github: "https://github.com/VarunWeb6/saas-ai-platform", demo: "https://imaginfy.vercel.app" },
+      links: { github: "https://github.com/VarunWeb6/saas-ai-platform", demo: "https://saas-ai-client.vercel.app/" },
       image: SaasAI
     },
     {
       title: "Modern Blog App",
       description: "A sleek, responsive blog platform with smooth animations and an intuitive user experience.",
       tags: ["React", "Framer Motion", "Tailwind"],
-      links: { github: "https://github.com/VarunWeb6/3d_webdeisgn", demo: "https://3d-webdesign.vercel.app/" },
+      links: { github: "https://github.com/VarunWeb6/3d_webdeisgn", demo: "https://blog-front-end-v3k9.vercel.app/" },
       image: Blog
     },
     {
