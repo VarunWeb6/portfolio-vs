@@ -7,6 +7,8 @@ import {
   FaCode,
   FaEnvelope,
   FaBars,
+  FaChartLine,
+  FaGithub,
 } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -18,13 +20,10 @@ export default function Header() {
     return path;
   });
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+    setActiveLink(location.pathname.substring(1) || "home");
+  }, [location.pathname]);
 
   const navLinks = [
     { id: "home", icon: FaHome, text: "Home", path: "/" },
@@ -42,6 +41,8 @@ export default function Header() {
       path: "/education",
     },
     { id: "projects", icon: FaLaptopCode, text: "Projects", path: "/projects" },
+    { id: "statistics", icon: FaChartLine, text: "Impact", path: "/statistics" },
+    { id: "github", icon: FaGithub, text: "GitHub", path: "/github" },
     { id: "contact", icon: FaEnvelope, text: "Contact", path: "/contact" },
   ];
 
@@ -55,6 +56,7 @@ export default function Header() {
               <Link to="/" className="text-white font-bold tracking-tight">Portfolio</Link>
               <button 
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
+                aria-label="Toggle navigation menu"
                 className="text-white p-2"
               >
                 <FaBars />

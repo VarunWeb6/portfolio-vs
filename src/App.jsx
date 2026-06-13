@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
-import Hero from "./components/Hero";
+import Home from "./components/Home";
 import "./assets/css/index.css";
 import Header from "./components/Header";
 import Skills from "./components/Skills";
@@ -31,39 +31,25 @@ const PageWrapper = ({ children }) => {
 };
 
 export default function App() {
-  const [isOnePage, setIsOnePage] = useState(false); // Toggle state
   const location = useLocation();
 
   return (
     <>
 
       <Header />
-      {/* Conditional Rendering */}
-      {isOnePage ? (
-        // One-Page Mode: Render all components together
-        <>
-          <Hero />
-          <Skills />
-          <Experience />
-          <Education />
-          <Contact />
-        </>
-      ) : (
-        // Router Mode: Use routes for navigation
-        <AnimatePresence mode="wait">
-          <Routes location={location} key={location.pathname}>
-            <Route path="/" element={<PageWrapper><Hero /></PageWrapper>} />
-            <Route path="/skills" element={<PageWrapper><Skills /></PageWrapper>} />
-            <Route path="/experience" element={<PageWrapper><Experience /></PageWrapper>} />
-            <Route path="/education" element={<PageWrapper><Education /></PageWrapper>} />
-            <Route path="/contact" element={<PageWrapper><Contact /></PageWrapper>} />
-            <Route path="/projects" element={<PageWrapper><Projects /></PageWrapper>} />
-            <Route path="/statistics" element={<PageWrapper><Statistics /></PageWrapper>} />
-            <Route path="/timeline" element={<PageWrapper><Timeline /></PageWrapper>} />
-            <Route path="/github" element={<PageWrapper><GitHubActivity /></PageWrapper>} />
-          </Routes>
-        </AnimatePresence>
-      )}
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={location.pathname}>
+          <Route path="/" element={<PageWrapper><Home /></PageWrapper>} />
+          <Route path="/skills" element={<PageWrapper><Skills /></PageWrapper>} />
+          <Route path="/experience" element={<PageWrapper><Experience /></PageWrapper>} />
+          <Route path="/education" element={<PageWrapper><Education /></PageWrapper>} />
+          <Route path="/contact" element={<PageWrapper><Contact /></PageWrapper>} />
+          <Route path="/projects" element={<PageWrapper><Projects /></PageWrapper>} />
+          <Route path="/statistics" element={<PageWrapper><Statistics /></PageWrapper>} />
+          <Route path="/timeline" element={<PageWrapper><Timeline /></PageWrapper>} />
+          <Route path="/github" element={<PageWrapper><GitHubActivity /></PageWrapper>} />
+        </Routes>
+      </AnimatePresence>
     </>
   );
 }

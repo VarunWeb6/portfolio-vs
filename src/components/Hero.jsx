@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { Github, Linkedin, Mail, Download, Briefcase, Code2 } from "lucide-react";
 import resume from "../assets/Varun_resume.pdf";
+import profileImage from "../assets/images/profile.png";
 
 // A text scramble component for the tech feel
 const ScrambleText = ({ text }) => {
@@ -208,9 +209,10 @@ export default function Hero() {
             </h1>
 
             <div className="text-xl sm:text-2xl font-body text-[var(--text-secondary)] mb-8 max-w-xl leading-relaxed">
-              I build <span className="text-[var(--text-primary)] font-semibold">scalable web applications</span> and 
-              <span className="text-[var(--secondary)] font-semibold"> AI-powered systems</span> that drive impact.
+              Full-stack engineer building <span className="text-[var(--text-primary)] font-semibold">AI products</span>, 
+              <span className="text-[var(--secondary)] font-semibold"> dashboards</span>, and scalable web apps that solve real workflow problems.
             </div>
+
 
             <div className="flex flex-wrap items-center gap-4 mb-12">
               <MagneticButton 
@@ -232,13 +234,13 @@ export default function Hero() {
 
             {/* Social Links */}
             <div className="flex items-center gap-6">
-              <a href="https://github.com/VarunWeb6" target="_blank" rel="noopener noreferrer" className="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors hover-lift">
+              <a href="https://github.com/VarunWeb6" target="_blank" rel="noopener noreferrer" aria-label="Open Varun Sharma GitHub profile" className="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors hover-lift">
                 <Github className="w-6 h-6" />
               </a>
-              <a href="https://www.linkedin.com/in/varun-sharma-155a17225" target="_blank" rel="noopener noreferrer" className="text-[var(--text-secondary)] hover:text-[var(--secondary)] transition-colors hover-lift">
+              <a href="https://www.linkedin.com/in/varun-sharma-155a17225" target="_blank" rel="noopener noreferrer" aria-label="Open Varun Sharma LinkedIn profile" className="text-[var(--text-secondary)] hover:text-[var(--secondary)] transition-colors hover-lift">
                 <Linkedin className="w-6 h-6" />
               </a>
-              <a href="mailto:vvarunsharma64@gmail.com" className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors hover-lift">
+              <a href="mailto:vvarunsharma64@gmail.com" aria-label="Email Varun Sharma" className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors hover-lift">
                 <Mail className="w-6 h-6" />
               </a>
             </div>

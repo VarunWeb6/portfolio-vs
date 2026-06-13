@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Send, Mail, MapPin } from "lucide-react";
+import { Download, Github, Linkedin, Send, Mail, MapPin } from "lucide-react";
+import resume from "../assets/Varun_resume.pdf";
 
 import { motion } from "framer-motion";
 
@@ -104,7 +105,7 @@ export default function Contact() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-5 gap-8 bg-[var(--bg-secondary)]/50 backdrop-blur-xl border border-[var(--border)] rounded-[40px] p-8 md:p-12 shadow-2xl relative z-10"
+        className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-5 gap-8 bg-[var(--bg-secondary)]/50 backdrop-blur-xl border border-[var(--border)] rounded-lg p-8 md:p-12 shadow-2xl relative z-10"
       >
         {/* Contact Info Side */}
         <div className="md:col-span-2 flex flex-col justify-between">
@@ -117,13 +118,42 @@ export default function Contact() {
             </p>
           </div>
 
+          <div className="grid grid-cols-3 gap-3 mb-8">
+            <a
+              href="https://github.com/VarunWeb6"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open Varun Sharma GitHub profile"
+              className="flex items-center justify-center rounded-lg border border-[var(--border)] bg-[var(--bg-primary)] p-3 text-[var(--text-secondary)] transition-all hover:border-[var(--accent)] hover:text-[var(--accent)]"
+            >
+              <Github className="w-5 h-5" />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/varun-sharma-155a17225"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open Varun Sharma LinkedIn profile"
+              className="flex items-center justify-center rounded-lg border border-[var(--border)] bg-[var(--bg-primary)] p-3 text-[var(--text-secondary)] transition-all hover:border-[var(--secondary)] hover:text-[var(--secondary)]"
+            >
+              <Linkedin className="w-5 h-5" />
+            </a>
+            <a
+              href={resume}
+              download="Varun_Sharma_Resume.pdf"
+              aria-label="Download Varun Sharma resume"
+              className="flex items-center justify-center rounded-lg border border-[var(--border)] bg-[var(--bg-primary)] p-3 text-[var(--text-secondary)] transition-all hover:border-[var(--accent)] hover:text-[var(--accent)]"
+            >
+              <Download className="w-5 h-5" />
+            </a>
+          </div>
+
           <div className="flex flex-col gap-6 mt-6 md:mt-0 mb-8 md:mb-0">
-            <div className="flex items-center gap-4 text-[var(--text-secondary)] font-body hover:text-[var(--accent)] transition-colors cursor-pointer group">
+            <a href="mailto:vvarunsharma64@gmail.com" className="flex items-center gap-4 text-[var(--text-secondary)] font-body hover:text-[var(--accent)] transition-colors cursor-pointer group">
               <div className="p-3 bg-[var(--bg-primary)] rounded-xl border border-[var(--border)] group-hover:border-[var(--accent)]/50 group-hover:shadow-[0_0_15px_var(--accent-muted)] transition-all">
                 <Mail className="w-5 h-5 text-white" />
               </div>
               <span className="group-hover:translate-x-1 transition-transform">vvarunsharma64@gmail.com</span>
-            </div>
+            </a>
             <div className="flex items-center gap-4 text-[var(--text-secondary)] font-body hover:text-[var(--secondary)] transition-colors cursor-pointer group">
               <div className="p-3 bg-[var(--bg-primary)] rounded-xl border border-[var(--border)] group-hover:border-[var(--secondary)]/50 group-hover:shadow-[0_0_15px_var(--accent-muted)] transition-all">
                 <MapPin className="w-5 h-5 text-white" />
@@ -134,7 +164,7 @@ export default function Contact() {
         </div>
 
         {/* Form Side */}
-        <form onSubmit={handleSubmit} className="md:col-span-3 bg-[var(--bg-primary)]/50 border border-[var(--border)] p-8 rounded-3xl">
+        <form onSubmit={handleSubmit} className="md:col-span-3 bg-[var(--bg-primary)]/50 border border-[var(--border)] p-8 rounded-lg">
           <InputField label="Name" name="name" formData={formData} setFormData={setFormData} focusedField={focusedField} setFocusedField={setFocusedField} />
           <InputField label="Email" name="email" type="email" formData={formData} setFormData={setFormData} focusedField={focusedField} setFocusedField={setFocusedField} />
           <InputField label="Subject" name="subject" formData={formData} setFormData={setFormData} focusedField={focusedField} setFocusedField={setFocusedField} />
