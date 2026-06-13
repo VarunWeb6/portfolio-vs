@@ -76,6 +76,41 @@ const ProjectShowcase = () => {
       tags: ["Python", "FastAPI", "WebSockets"],
       links: {},
       image: Multinenat
+    },
+    {
+      title: "Imaginfy: AI Text-to-Image",
+      description: "A powerful AI-powered text-to-image generator with a credit system, leveraging advanced machine learning models.",
+      tags: ["Next.js", "Clerk", "Drizzle", "AI"],
+      links: { github: "https://github.com/VarunWeb6/saas-ai-platform", demo: "https://imaginfy.vercel.app" },
+      image: SaasAI
+    },
+    {
+      title: "Modern Blog App",
+      description: "A sleek, responsive blog platform with smooth animations and an intuitive user experience.",
+      tags: ["React", "Framer Motion", "Tailwind"],
+      links: { github: "https://github.com/VarunWeb6/3d_webdeisgn", demo: "https://3d-webdesign.vercel.app/" },
+      image: Blog
+    },
+    {
+       title: "Company Dashboard & Job Portal",
+       description: "A comprehensive job search dashboard for tracking applications and managing company profiles.",
+       tags: ["React", "Node.js", "MongoDB", "Express"],
+       links: { github: "https://github.com/VarunWeb6/jobportal_frontend", demo: "https://jobportal-frontend-kappa.vercel.app/admin/companies" },
+       image: Jobportal
+    },
+    {
+      title: "Gaming Website with Search",
+      description: "An immersive gaming platform featuring search functionality and detailed game catalogs.",
+      tags: ["React", "API", "Search"],
+      links: { github: "https://github.com/VarunWeb6/gaming_website", demo: "https://gaming-website-omega.vercel.app/" },
+      image: Gaming
+    },
+    {
+      title: "Personal Portfolio",
+      description: "A professional developer portfolio showcasing projects with high-end animations and a 3D design.",
+      tags: ["React", "3D", "Framer Motion"],
+      links: { github: "https://github.com/VarunWeb6/portfolio-vs.git", demo: "https://portfolio-vs-seven.vercel.app/" },
+      image: Portfolio
     }
   ];
 
