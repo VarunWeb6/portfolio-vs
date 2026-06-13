@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import CustomCursor from "./components/ui/CustomCursor";
+
 import Hero from "./components/Hero";
 import "./assets/css/index.css";
 import Header from "./components/Header";
@@ -36,7 +36,7 @@ export default function App() {
 
   return (
     <>
-      <CustomCursor />
+
       <Header />
       {/* Conditional Rendering */}
       {isOnePage ? (

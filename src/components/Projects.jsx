@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
-import React, { useState } from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import React, { useState, useRef } from "react";
 import { Github, ExternalLink } from "lucide-react";
 import SaasAI from "../assets/images/saasAI.png";
 import project3D_logo from "../assets/images/3D_logo.png";
@@ -13,7 +13,6 @@ import ServerGenerator from "../assets/images/servergenerator.png";
 import JobTracker from "../assets/images/job-tracker.png";
 import KBHUB from "../assets/images/kb-hub.png";
 import EcomImg from "../assets/images/ecom.png"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const MacOsButtons = () => (
   <div className="flex gap-2 mb-4 absolute top-4 left-4 z-20">
@@ -22,6 +21,50 @@ const MacOsButtons = () => (
     <div className="w-3 h-3 rounded-full bg-green-400 hover:bg-green-500 transition-colors shadow-md" />
   </div>
 );
+
+const TiltCard = ({ children, className, ...motionProps }) => {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const mouseX = useSpring(x, { stiffness: 150, damping: 20 });
+  const mouseY = useSpring(y, { stiffness: 150, damping: 20 });
+
+  const rotateX = useTransform(mouseY, [-0.5, 0.5], ["10deg", "-10deg"]);
+  const rotateY = useTransform(mouseX, [-0.5, 0.5], ["-10deg", "10deg"]);
+
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const mouseXPos = e.clientX - rect.left;
+    const mouseYPos = e.clientY - rect.top;
+    const xPct = mouseXPos / width - 0.5;
+    const yPct = mouseYPos / height - 0.5;
+    x.set(xPct);
+    y.set(yPct);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
+  return (
+    <motion.div
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        rotateX,
+        rotateY,
+        transformStyle: "preserve-3d",
+      }}
+      className={className}
+      {...motionProps}
+    >
+      {children}
+    </motion.div>
+  );
+};
 
 const ProjectShowcase = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -102,7 +145,7 @@ const ProjectShowcase = () => {
       title: "Gaming Website with Search",
       description: "An immersive gaming platform featuring search functionality and detailed game catalogs.",
       tags: ["React", "API", "Search"],
-      links: { github: "https://github.com/VarunWeb6/gaming_website", demo: "https://gaming-website-omega.vercel.app/" },
+      links: { github: "https://github.com/VarunWeb6/gaming_website", demo: "https://gaming-site-coral.vercel.app/" },
       image: Gaming
     },
     {
@@ -147,9 +190,8 @@ const ProjectShowcase = () => {
             const isWide = index === 3 || index === 4;
             
             return (
-              <motion.div
+              <TiltCard
                 key={index}
-                whileHover={{ y: -5, scale: 1.01 }}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
@@ -163,7 +205,7 @@ const ProjectShowcase = () => {
                 <MacOsButtons />
                 
                 {/* Image Background */}
-                <div className="absolute inset-0 w-full h-full overflow-hidden opacity-60 group-hover:opacity-40 transition-opacity duration-500">
+                <div className="absolute inset-0 w-full h-full overflow-hidden opacity-60 group-hover:opacity-40 transition-opacity duration-500" style={{ transform: 'translateZ(-50px)' }}>
                   <img
                     src={project.image}
                     alt={project.title}
@@ -173,7 +215,7 @@ const ProjectShowcase = () => {
                 </div>
 
                 {/* Content Overlay */}
-                <div className="absolute inset-0 p-8 flex flex-col justify-end">
+                <div className="absolute inset-0 p-8 flex flex-col justify-end" style={{ transform: 'translateZ(50px)' }}>
                   <h3 className="text-2xl font-display font-bold text-white mb-2 group-hover:text-[var(--secondary)] transition-colors">
                     {project.title}
                   </h3>
@@ -209,7 +251,7 @@ const ProjectShowcase = () => {
                     )}
                   </div>
                 </div>
-              </motion.div>
+              </TiltCard>
             );
           })}
         </div>

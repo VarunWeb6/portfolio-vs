@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import {
   FaHome,
   FaLaptopCode,
-  FaUser,
   FaBriefcase,
   FaGraduationCap,
   FaCode,
@@ -10,6 +9,7 @@ import {
   FaBars,
 } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
 
 export default function Header() {
   const location = useLocation();
@@ -72,22 +72,29 @@ export default function Header() {
                       setActiveLink(id);
                       setIsMenuOpen(false);
                     }}
-                    className={`px-3 py-2 md:py-1.5 rounded-lg md:rounded-full text-sm font-medium
+                    className={`relative px-3 py-2 md:py-1.5 rounded-lg md:rounded-full text-sm font-medium
                       transition-all duration-300 flex items-center gap-2
-                      hover:bg-white/10 
+                      hover:bg-white/5 
                       ${
                         activeLink === id
-                          ? "bg-[var(--accent-muted)] text-[var(--accent)]"
+                          ? "text-[var(--accent)]"
                           : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
                       }
                     `}
                   >
+                    {activeLink === id && (
+                      <motion.div
+                        layoutId="activeNav"
+                        className="absolute inset-0 bg-[var(--accent-muted)] rounded-lg md:rounded-full z-[-1]"
+                        transition={{ type: "spring", duration: 0.6 }}
+                      />
+                    )}
                     <Icon
-                      className={`text-base ${
+                      className={`text-base relative z-10 ${
                         activeLink === id ? "scale-110" : ""
                       }`}
                     />
-                    <span className="inline">{text}</span>
+                    <span className="relative z-10">{text}</span>
                   </Link>
                 ))}
               </div>

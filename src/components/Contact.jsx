@@ -3,6 +3,47 @@ import { Send, Mail, MapPin } from "lucide-react";
 
 import { motion } from "framer-motion";
 
+const InputField = ({ label, name, type = "text", isTextArea = false, formData, setFormData, focusedField, setFocusedField }) => {
+  const isFocused = focusedField === name;
+  const hasValue = formData[name].length > 0;
+  
+  return (
+    <div className="relative mb-6">
+      <label
+        htmlFor={name}
+        className={`absolute left-4 font-body transition-all duration-300 pointer-events-none ${
+          isFocused || hasValue
+            ? "-top-3 text-xs text-[var(--accent)] bg-[var(--bg-secondary)] px-2"
+            : "top-4 text-sm text-[var(--text-secondary)]"
+        }`}
+      >
+        {label}
+      </label>
+      {isTextArea ? (
+        <textarea
+          id={name}
+          rows="5"
+          className="w-full p-4 bg-[var(--bg-primary)] rounded-xl text-[var(--text-primary)] font-body border border-[var(--border)] focus:outline-none focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)] transition-all resize-none shadow-inner"
+          value={formData[name]}
+          onChange={(e) => setFormData({ ...formData, [name]: e.target.value })}
+          onFocus={() => setFocusedField(name)}
+          onBlur={() => setFocusedField(null)}
+        />
+      ) : (
+        <input
+          id={name}
+          type={type}
+          className="w-full p-4 bg-[var(--bg-primary)] rounded-xl text-[var(--text-primary)] font-body border border-[var(--border)] focus:outline-none focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)] transition-all shadow-inner"
+          value={formData[name]}
+          onChange={(e) => setFormData({ ...formData, [name]: e.target.value })}
+          onFocus={() => setFocusedField(name)}
+          onBlur={() => setFocusedField(null)}
+        />
+      )}
+    </div>
+  );
+};
+
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: "",
@@ -53,47 +94,6 @@ export default function Contact() {
     }
   };
 
-  const InputField = ({ label, name, type = "text", isTextArea = false }) => {
-    const isFocused = focusedField === name;
-    const hasValue = formData[name].length > 0;
-    
-    return (
-      <div className="relative mb-6">
-        <label
-          htmlFor={name}
-          className={`absolute left-4 font-body transition-all duration-300 pointer-events-none ${
-            isFocused || hasValue
-              ? "-top-3 text-xs text-[var(--accent)] bg-[var(--bg-secondary)] px-2"
-              : "top-4 text-sm text-[var(--text-secondary)]"
-          }`}
-        >
-          {label}
-        </label>
-        {isTextArea ? (
-          <textarea
-            id={name}
-            rows="5"
-            className="w-full p-4 bg-[var(--bg-primary)] rounded-xl text-[var(--text-primary)] font-body border border-[var(--border)] focus:outline-none focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)] transition-all resize-none shadow-inner"
-            value={formData[name]}
-            onChange={(e) => setFormData({ ...formData, [name]: e.target.value })}
-            onFocus={() => setFocusedField(name)}
-            onBlur={() => setFocusedField(null)}
-          />
-        ) : (
-          <input
-            id={name}
-            type={type}
-            className="w-full p-4 bg-[var(--bg-primary)] rounded-xl text-[var(--text-primary)] font-body border border-[var(--border)] focus:outline-none focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)] transition-all shadow-inner"
-            value={formData[name]}
-            onChange={(e) => setFormData({ ...formData, [name]: e.target.value })}
-            onFocus={() => setFocusedField(name)}
-            onBlur={() => setFocusedField(null)}
-          />
-        )}
-      </div>
-    );
-  };
-
   return (
     <main className="min-h-screen bg-[var(--bg-primary)] relative overflow-hidden flex items-center justify-center p-6 select-none pt-32 pb-24">
       {/* Background Textures */}
@@ -135,10 +135,10 @@ export default function Contact() {
 
         {/* Form Side */}
         <form onSubmit={handleSubmit} className="md:col-span-3 bg-[var(--bg-primary)]/50 border border-[var(--border)] p-8 rounded-3xl">
-          <InputField label="Name" name="name" />
-          <InputField label="Email" name="email" type="email" />
-          <InputField label="Subject" name="subject" />
-          <InputField label="Message" name="message" isTextArea={true} />
+          <InputField label="Name" name="name" formData={formData} setFormData={setFormData} focusedField={focusedField} setFocusedField={setFocusedField} />
+          <InputField label="Email" name="email" type="email" formData={formData} setFormData={setFormData} focusedField={focusedField} setFocusedField={setFocusedField} />
+          <InputField label="Subject" name="subject" formData={formData} setFormData={setFormData} focusedField={focusedField} setFocusedField={setFocusedField} />
+          <InputField label="Message" name="message" isTextArea={true} formData={formData} setFormData={setFormData} focusedField={focusedField} setFocusedField={setFocusedField} />
 
           <button
             type="submit"

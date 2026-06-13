@@ -1,7 +1,45 @@
 import React, { useState, useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { Github, Linkedin, Mail, Download, Briefcase, Code2 } from "lucide-react";
 import resume from "../assets/Varun_resume.pdf";
+
+// A text scramble component for the tech feel
+const ScrambleText = ({ text }) => {
+  const [displayText, setDisplayText] = useState(text);
+  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()";
+
+  useEffect(() => {
+    let iteration = 0;
+    let interval = null;
+
+    const startScramble = () => {
+      clearInterval(interval);
+      interval = setInterval(() => {
+        setDisplayText(
+          text
+            .split("")
+            .map((char, index) => {
+              if (index < iteration) {
+                return text[index];
+              }
+              return characters[Math.floor(Math.random() * characters.length)];
+            })
+            .join("")
+        );
+
+        if (iteration >= text.length) {
+          clearInterval(interval);
+        }
+        iteration += 1 / 3;
+      }, 30);
+    };
+
+    startScramble();
+    return () => clearInterval(interval);
+  }, [text]);
+
+  return <span>{displayText}</span>;
+};
 
 // A magnetic button component for the interactive feel
 const MagneticButton = ({ children, className, onClick, href }) => {
@@ -10,8 +48,8 @@ const MagneticButton = ({ children, className, onClick, href }) => {
   const handleMouseMove = (e) => {
     const { clientX, clientY } = e;
     const { left, top, width, height } = ref.current.getBoundingClientRect();
-    const x = (clientX - (left + width / 2)) * 0.2;
-    const y = (clientY - (top + height / 2)) * 0.2;
+    const x = (clientX - (left + width / 2)) * 0.5;
+    const y = (clientY - (top + height / 2)) * 0.5;
     ref.current.style.transform = `translate(${x}px, ${y}px)`;
   };
 
@@ -114,6 +152,21 @@ const TechStackMarquee = () => {
 };
 
 export default function Hero() {
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const spotlightX = useSpring(mouseX, { damping: 20, stiffness: 150 });
+  const spotlightY = useSpring(mouseY, { damping: 20, stiffness: 150 });
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [mouseX, mouseY]);
+
   const handleDownload = () => {
     const link = document.createElement("a");
     link.href = resume;
@@ -125,6 +178,16 @@ export default function Hero() {
 
   return (
     <main className="neon-glow-bg grain dot-grid min-h-screen relative overflow-hidden select-none">
+      {/* Interactive Spotlight Overlay */}
+      <motion.div
+        className="pointer-events-none fixed inset-0 z-30 opacity-50 transition-opacity duration-300"
+        style={{
+          background: useTransform(
+            [spotlightX, spotlightY],
+            ([x, y]) => `radial-gradient(600px circle at ${x}px ${y}px, var(--accent-muted) 0%, transparent 70%)`
+          ),
+        }}
+      />
       
       <section className="min-h-screen flex items-center relative px-4 sm:px-6 lg:px-12 w-full max-w-[1600px] mx-auto">
         <div className="flex flex-col lg:flex-row items-center justify-between w-full h-full pt-20 lg:pt-0">
@@ -140,7 +203,7 @@ export default function Hero() {
             <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-display font-extrabold leading-[1.05] tracking-tighter mb-6">
               <span className="block text-[var(--text-primary)]">Hello, I'm</span>
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[var(--accent)] to-[var(--secondary)]">
-                Varun Sharma
+                <ScrambleText text="Varun Sharma" />
               </span>
             </h1>
 
