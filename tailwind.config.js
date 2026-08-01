@@ -7,9 +7,12 @@ module.exports = {
       fontFamily: {
         display: ['Space Grotesk', 'sans-serif'],
         body: ['Outfit', 'sans-serif'],
+        mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
       },
   		animation: {
-  			meteor: 'meteor 5s linear infinite'
+  			meteor: 'meteor 5s linear infinite',
+        'pulse-slow': 'pulse 4s ease-in-out infinite',
+        'spin-slow': 'spin 8s linear infinite',
   		},
   		keyframes: {
   			meteor: {

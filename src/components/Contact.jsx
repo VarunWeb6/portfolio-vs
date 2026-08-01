@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Download, Github, Linkedin, Send, Mail, MapPin } from "lucide-react";
 import resume from "../assets/Varun_resume.pdf";
-
 import { motion } from "framer-motion";
 
 const InputField = ({ label, name, type = "text", isTextArea = false, formData, setFormData, focusedField, setFocusedField }) => {
@@ -14,7 +13,7 @@ const InputField = ({ label, name, type = "text", isTextArea = false, formData, 
         htmlFor={name}
         className={`absolute left-4 font-body transition-all duration-300 pointer-events-none ${
           isFocused || hasValue
-            ? "-top-3 text-xs text-[var(--accent)] bg-[var(--bg-secondary)] px-2"
+            ? "-top-3 text-xs text-[var(--accent)] bg-[var(--bg-secondary)] px-2 rounded-md font-mono"
             : "top-4 text-sm text-[var(--text-secondary)]"
         }`}
       >
@@ -59,7 +58,6 @@ export default function Contact() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const { name, email, subject, message } = formData;
 
     if (!name || !email || !subject || !message) {
@@ -98,20 +96,20 @@ export default function Contact() {
   return (
     <main className="min-h-screen bg-[var(--bg-primary)] relative overflow-hidden flex items-center justify-center p-6 select-none pt-32 pb-24">
       {/* Background Textures */}
-      <div className="absolute inset-0 neon-glow-bg pointer-events-none opacity-40 mix-blend-screen"></div>
+      <div className="absolute inset-0 neon-glow-bg pointer-events-none opacity-30 mix-blend-screen" />
 
       <motion.div 
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-5 gap-8 bg-[var(--bg-secondary)]/50 backdrop-blur-xl border border-[var(--border)] rounded-lg p-8 md:p-12 shadow-2xl relative z-10"
+        className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-5 gap-8 glass-card rounded-2xl p-8 md:p-12 shadow-2xl relative z-10"
       >
         {/* Contact Info Side */}
         <div className="md:col-span-2 flex flex-col justify-between">
           <div>
-            <h2 className="text-4xl lg:text-5xl font-display font-bold text-white mb-6">
-              Let's <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--secondary)] to-[var(--accent)]">Talk</span>
+            <h2 className="text-4xl lg:text-5xl font-display font-bold text-white mb-6 text-glow">
+              Let's <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--accent)] via-[var(--accent-glow)] to-[var(--secondary)]">Talk</span>
             </h2>
             <p className="text-[var(--text-secondary)] font-body text-lg mb-10 leading-relaxed">
               Have a project in mind, looking for a developer, or just want to say hi? My inbox is always open.
@@ -124,7 +122,7 @@ export default function Contact() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Open Varun Sharma GitHub profile"
-              className="flex items-center justify-center rounded-lg border border-[var(--border)] bg-[var(--bg-primary)] p-3 text-[var(--text-secondary)] transition-all hover:border-[var(--accent)] hover:text-[var(--accent)]"
+              className="flex items-center justify-center rounded-xl border border-[var(--border)] bg-[var(--bg-primary)] p-3 text.5 text-[var(--text-secondary)] transition-all hover:border-[var(--accent)] hover:text-[var(--accent)] hover:-translate-y-0.5"
             >
               <Github className="w-5 h-5" />
             </a>
@@ -133,7 +131,7 @@ export default function Contact() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Open Varun Sharma LinkedIn profile"
-              className="flex items-center justify-center rounded-lg border border-[var(--border)] bg-[var(--bg-primary)] p-3 text-[var(--text-secondary)] transition-all hover:border-[var(--secondary)] hover:text-[var(--secondary)]"
+              className="flex items-center justify-center rounded-xl border border-[var(--border)] bg-[var(--bg-primary)] p-3 text-[var(--text-secondary)] transition-all hover:border-[var(--secondary)] hover:text-[var(--secondary)] hover:-translate-y-0.5"
             >
               <Linkedin className="w-5 h-5" />
             </a>
@@ -141,30 +139,30 @@ export default function Contact() {
               href={resume}
               download="Varun_Sharma_Resume.pdf"
               aria-label="Download Varun Sharma resume"
-              className="flex items-center justify-center rounded-lg border border-[var(--border)] bg-[var(--bg-primary)] p-3 text-[var(--text-secondary)] transition-all hover:border-[var(--accent)] hover:text-[var(--accent)]"
+              className="flex items-center justify-center rounded-xl border border-[var(--border)] bg-[var(--bg-primary)] p-3 text-[var(--text-secondary)] transition-all hover:border-[var(--accent-glow)] hover:text-[var(--accent-glow)] hover:-translate-y-0.5"
             >
               <Download className="w-5 h-5" />
             </a>
           </div>
 
-          <div className="flex flex-col gap-6 mt-6 md:mt-0 mb-8 md:mb-0">
+          <div className="flex flex-col gap-5 mt-6 md:mt-0 mb-8 md:mb-0">
             <a href="mailto:vvarunsharma64@gmail.com" className="flex items-center gap-4 text-[var(--text-secondary)] font-body hover:text-[var(--accent)] transition-colors cursor-pointer group">
               <div className="p-3 bg-[var(--bg-primary)] rounded-xl border border-[var(--border)] group-hover:border-[var(--accent)]/50 group-hover:shadow-[0_0_15px_var(--accent-muted)] transition-all">
                 <Mail className="w-5 h-5 text-white" />
               </div>
-              <span className="group-hover:translate-x-1 transition-transform">vvarunsharma64@gmail.com</span>
+              <span className="group-hover:translate-x-1 transition-transform text-sm">vvarunsharma64@gmail.com</span>
             </a>
             <div className="flex items-center gap-4 text-[var(--text-secondary)] font-body hover:text-[var(--secondary)] transition-colors cursor-pointer group">
               <div className="p-3 bg-[var(--bg-primary)] rounded-xl border border-[var(--border)] group-hover:border-[var(--secondary)]/50 group-hover:shadow-[0_0_15px_var(--accent-muted)] transition-all">
                 <MapPin className="w-5 h-5 text-white" />
               </div>
-              <span className="group-hover:translate-x-1 transition-transform">Global (Remote)</span>
+              <span className="group-hover:translate-x-1 transition-transform text-sm">Global (Remote)</span>
             </div>
           </div>
         </div>
 
         {/* Form Side */}
-        <form onSubmit={handleSubmit} className="md:col-span-3 bg-[var(--bg-primary)]/50 border border-[var(--border)] p-8 rounded-lg">
+        <form onSubmit={handleSubmit} className="md:col-span-3 bg-[var(--bg-primary)]/60 border border-[var(--border)] p-7 rounded-xl">
           <InputField label="Name" name="name" formData={formData} setFormData={setFormData} focusedField={focusedField} setFocusedField={setFocusedField} />
           <InputField label="Email" name="email" type="email" formData={formData} setFormData={setFormData} focusedField={focusedField} setFocusedField={setFocusedField} />
           <InputField label="Subject" name="subject" formData={formData} setFormData={setFormData} focusedField={focusedField} setFocusedField={setFocusedField} />
@@ -173,10 +171,9 @@ export default function Contact() {
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full group relative inline-flex items-center justify-center gap-2 px-8 py-4 font-display font-bold tracking-wide text-white transition-all duration-300 bg-[var(--bg-primary)] border border-[var(--border)] rounded-xl hover:bg-[var(--accent)] disabled:bg-[var(--bg-primary)] disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden shadow-[0_0_20px_var(--accent-muted)]"
+            className="w-full btn-liquid relative inline-flex items-center justify-center gap-2 px-8 py-4 font-display font-bold tracking-wide text-white disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-[var(--accent)] to-[var(--secondary)] opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
-            <span className="relative z-10">{isLoading ? "Transmitting..." : "Send Secure Message"}</span>
+            <span className="relative z-10">{isLoading ? "Transmitting..." : "Send Message"}</span>
             {!isLoading && <Send className="w-4 h-4 relative z-10 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />}
           </button>
 
@@ -184,7 +181,7 @@ export default function Contact() {
             <motion.p 
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className={`text-center mt-6 font-body text-sm px-4 py-2 border rounded-lg ${status.type === 'error' ? 'text-red-400 border-red-500/30 bg-red-500/10' : 'text-green-400 border-green-500/30 bg-green-500/10'}`}
+              className={`text-center mt-6 font-body text-sm px-4 py-2 border rounded-xl ${status.type === 'error' ? 'text-red-400 border-red-500/30 bg-red-500/10' : 'text-emerald-400 border-emerald-500/30 bg-emerald-500/10'}`}
             >
               {status.text}
             </motion.p>

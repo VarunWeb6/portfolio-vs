@@ -90,10 +90,10 @@ const EducationSection = () => {
             <motion.div
               key={index}
               variants={cardVariants}
-              className={`group relative border rounded-3xl p-8 sm:p-10 transition-all duration-500 bg-[var(--bg-secondary)]/80 backdrop-blur-xl ${
+              className={`group relative glass-card p-8 sm:p-10 transition-all duration-500 ${
                 hoveredIndex === index
-                  ? "border-[var(--accent)]/50 shadow-[0_10px_40px_-15px_var(--accent)] -translate-y-2"
-                  : "border-[var(--border)]"
+                  ? "border-[var(--accent)]/50 shadow-[0_16px_48px_-12px_rgba(99,102,241,0.25)] -translate-y-2"
+                  : ""
               }`}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}

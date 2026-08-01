@@ -1,6 +1,6 @@
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import React, { useState, useRef } from "react";
-import { Github, ExternalLink } from "lucide-react";
+import { Github, ExternalLink, Filter } from "lucide-react";
 import SaasAI from "../assets/images/saasAI.png";
 import project3D_logo from "../assets/images/3D_logo.png";
 import Blog from "../assets/images/blog.png";
@@ -16,9 +16,9 @@ import EcomImg from "../assets/images/ecom.png"
 
 const MacOsButtons = () => (
   <div className="flex gap-2 mb-4 absolute top-4 left-4 z-20">
-    <div className="w-3 h-3 rounded-full bg-red-400 hover:bg-red-500 transition-colors shadow-md" />
-    <div className="w-3 h-3 rounded-full bg-yellow-400 hover:bg-yellow-500 transition-colors shadow-md" />
-    <div className="w-3 h-3 rounded-full bg-green-400 hover:bg-green-500 transition-colors shadow-md" />
+    <div className="w-3 h-3 rounded-full bg-red-400/80 hover:bg-red-500 transition-colors" />
+    <div className="w-3 h-3 rounded-full bg-yellow-400/80 hover:bg-yellow-500 transition-colors" />
+    <div className="w-3 h-3 rounded-full bg-green-400/80 hover:bg-green-500 transition-colors" />
   </div>
 );
 
@@ -29,8 +29,8 @@ const TiltCard = ({ children, className, ...motionProps }) => {
   const mouseX = useSpring(x, { stiffness: 150, damping: 20 });
   const mouseY = useSpring(y, { stiffness: 150, damping: 20 });
 
-  const rotateX = useTransform(mouseY, [-0.5, 0.5], ["10deg", "-10deg"]);
-  const rotateY = useTransform(mouseX, [-0.5, 0.5], ["-10deg", "10deg"]);
+  const rotateX = useTransform(mouseY, [-0.5, 0.5], ["8deg", "-8deg"]);
+  const rotateY = useTransform(mouseX, [-0.5, 0.5], ["-8deg", "8deg"]);
 
   const handleMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -66,8 +66,46 @@ const TiltCard = ({ children, className, ...motionProps }) => {
   );
 };
 
+// ── Spotlight Cursor Component ──────────────────────────────
+const SpotlightGrid = ({ children, className }) => {
+  const containerRef = useRef(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isHovering, setIsHovering] = useState(false);
+
+  const handleMouseMove = (e) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    setMousePosition({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+  };
+
+  return (
+    <div
+      ref={containerRef}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovering(true)}
+      onMouseLeave={() => setIsHovering(false)}
+      className={`relative ${className}`}
+    >
+      {/* Spotlight gradient */}
+      {isHovering && (
+        <div
+          className="pointer-events-none absolute inset-0 z-10 transition-opacity duration-300"
+          style={{
+            background: `radial-gradient(400px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(99, 102, 241, 0.06), transparent 60%)`,
+          }}
+        />
+      )}
+      {children}
+    </div>
+  );
+};
+
 const ProjectShowcase = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [activeFilter, setActiveFilter] = useState("All");
   const projectsPerPage = 6;
 
   const projects = [
@@ -77,6 +115,7 @@ const ProjectShowcase = () => {
       problem: "Online shoppers need a fast catalog and checkout flow for browsing and purchasing footwear.",
       impact: "Built a complete commerce flow with product browsing, cart handling, and Stripe payments.",
       tags: ["React", "Express", "MongoDB", "Stripe"],
+      category: "Full-Stack",
       links: { github: "https://github.com/VarunWeb6/shoekart-shopping-app/", demo: "https://shoekart-shopping-app.vercel.app/" },
       image: EcomImg
     },
@@ -86,6 +125,7 @@ const ProjectShowcase = () => {
       problem: "Static portfolios often fail to demonstrate motion design and interaction quality.",
       impact: "Created an immersive animated site that showcases 3D interaction and frontend polish.",
       tags: ["Framer Motion", "3D Design"],
+      category: "Frontend",
       links: { github: "https://github.com/VarunWeb6/3d_webdeisgn", demo: "https://3d-webdesign.vercel.app/" },
       image: project3D_logo
     },
@@ -95,6 +135,7 @@ const ProjectShowcase = () => {
       problem: "Starting backend projects repeatedly costs time and creates inconsistent setup quality.",
       impact: "Automated Node.js server scaffolding so new API projects start with a cleaner baseline.",
       tags: ["Node.js", "CLI", "Server Scaffolding"],
+      category: "Full-Stack",
       links: { github: "https://github.com/VarunWeb6/server_generator.git", demo: "https://server-generator.vercel.app/" },
       image: ServerGenerator
     },
@@ -104,6 +145,7 @@ const ProjectShowcase = () => {
       problem: "Job seekers need one place to manage applications, stages, and next actions.",
       impact: "Added AI assistance to a full tracking dashboard so users can organize applications faster.",
       tags: ["AI", "React", "MongoDB", "OpenAI"],
+      category: "AI",
       links: { github: "https://github.com/VarunWeb6/Job_tracker.git", demo: "https://job-tracker-khaki.vercel.app/" },
       image: JobTracker
     },
@@ -113,6 +155,7 @@ const ProjectShowcase = () => {
       problem: "Teams lose time searching scattered internal documents and validating answers.",
       impact: "Built a RAG workflow with citable responses for faster private knowledge retrieval.",
       tags: ["Next.js", "pgvector", "RAG", "Redis"],
+      category: "AI",
       links: { github: "https://github.com/VarunWeb6/knowledge-hub-frontend.git", demo: "https://knowledge-hub-frontend-rh7e.vercel.app/" },
       image: KBHUB
     },
@@ -122,6 +165,7 @@ const ProjectShowcase = () => {
       problem: "Market watchers need quick summaries alongside real-time stock context.",
       impact: "Combined financial overview cards with AI news summaries for faster executive scanning.",
       tags: ["AI", "Real-time", "Dashboard"],
+      category: "AI",
       links: { demo: "https://dashboard-frontend-beta-three.vercel.app" },
       status: "Repository private",
       image: Dashboard
@@ -132,6 +176,7 @@ const ProjectShowcase = () => {
       problem: "Download workflows need visible progress instead of silent background processing.",
       impact: "Used WebSockets to report download progress in real time across the full stack.",
       tags: ["Python", "FastAPI", "WebSockets"],
+      category: "Full-Stack",
       links: {},
       status: "Case study available on request",
       image: Multinenat
@@ -142,6 +187,7 @@ const ProjectShowcase = () => {
       problem: "AI generation tools need account, credit, and billing flows to work as a SaaS product.",
       impact: "Built a text-to-image SaaS experience with authentication and credit-based usage.",
       tags: ["Next.js", "Clerk", "Drizzle", "AI"],
+      category: "AI",
       links: { github: "https://github.com/VarunWeb6/saas-ai-platform", demo: "https://saas-ai-client.vercel.app/" },
       image: SaasAI
     },
@@ -151,6 +197,7 @@ const ProjectShowcase = () => {
       problem: "Content sites need clean reading flows, responsive layouts, and fast navigation.",
       impact: "Designed a polished blog frontend with smooth transitions and readable layouts.",
       tags: ["React", "Framer Motion", "Tailwind"],
+      category: "Frontend",
       links: { demo: "https://blog-front-end-v3k9.vercel.app/" },
       status: "Repository private",
       image: Blog
@@ -161,6 +208,7 @@ const ProjectShowcase = () => {
        problem: "Recruiting workflows need separate views for companies, postings, and candidate activity.",
        impact: "Built admin-facing job portal screens for company and application management.",
        tags: ["React", "Node.js", "MongoDB", "Express"],
+       category: "Full-Stack",
        links: { github: "https://github.com/VarunWeb6/jobportal_frontend", demo: "https://jobportal-frontend-kappa.vercel.app/admin/companies" },
        image: Jobportal
     },
@@ -170,6 +218,7 @@ const ProjectShowcase = () => {
       problem: "Game discovery depends on fast search, useful metadata, and visual browsing.",
       impact: "Created a searchable game catalog with responsive cards and API-backed content.",
       tags: ["React", "API", "Search"],
+      category: "Frontend",
       links: { github: "https://github.com/VarunWeb6/gaming_website", demo: "https://gaming-site-coral.vercel.app/" },
       image: Gaming
     },
@@ -179,51 +228,79 @@ const ProjectShowcase = () => {
       problem: "Recruiters need a fast way to verify skills, work samples, and contact details.",
       impact: "Built a responsive portfolio with animated sections, project proof, and clear CTAs.",
       tags: ["React", "3D", "Framer Motion"],
+      category: "Frontend",
       links: { github: "https://github.com/VarunWeb6/portfolio-vs.git", demo: "https://portfolio-vs-seven.vercel.app/" },
       image: Portfolio
     }
   ];
 
+  const filters = ["All", "AI", "Full-Stack", "Frontend"];
+
+  const filteredProjects = activeFilter === "All"
+    ? projects
+    : projects.filter((p) => p.category === activeFilter);
+
   const indexOfLastProject = currentPage * projectsPerPage;
   const indexOfFirstProject = indexOfLastProject - projectsPerPage;
-  const currentProjects = projects.slice(indexOfFirstProject, indexOfLastProject);
+  const currentProjects = filteredProjects.slice(indexOfFirstProject, indexOfLastProject);
 
   const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(projects.length / projectsPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(filteredProjects.length / projectsPerPage); i++) {
     pageNumbers.push(i);
   }
+
+  const handleFilterChange = (filter) => {
+    setActiveFilter(filter);
+    setCurrentPage(1);
+  };
 
   return (
     <section className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 bg-[var(--bg-primary)] min-h-screen relative z-10 w-full">
       
       {/* Background Textures */}
-      <div className="absolute inset-0 neon-glow-bg pointer-events-none opacity-40"></div>
+      <div className="absolute inset-0 neon-glow-bg pointer-events-none opacity-30" />
       
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="mb-20 text-center stagger-in">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-extrabold text-[var(--text-primary)] mb-6">
-            Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--accent)] to-[var(--secondary)]">Work</span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-extrabold text-[var(--text-primary)] mb-6 text-glow">
+            Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--accent)] via-[var(--accent-glow)] to-[var(--secondary)]">Work</span>
           </h2>
           <p className="text-[var(--text-secondary)] font-body text-lg max-w-2xl mx-auto leading-relaxed">
             A curated selection of my finest commercial and independent technical achievements.
           </p>
         </div>
 
+        {/* Filter Pills */}
+        <div className="flex flex-wrap justify-center gap-3 mb-12">
+          {filters.map((filter) => (
+            <button
+              key={filter}
+              onClick={() => handleFilterChange(filter)}
+              className={`px-5 py-2 rounded-xl font-body text-sm font-medium transition-all duration-300 ${
+                activeFilter === filter
+                  ? "bg-[var(--accent)] text-white shadow-[0_0_20px_var(--accent-muted)]"
+                  : "glass-card text-[var(--text-secondary)] hover:text-white hover:border-[var(--accent)]/40"
+              }`}
+            >
+              {filter}
+            </button>
+          ))}
+        </div>
+
         {/* Bento Grid layout */}
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-[300px]">
+        <SpotlightGrid className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-[300px]">
           {currentProjects.map((project, index) => {
-            // Bento logic: First item is large, few are wide, others are standard
             const isLarge = index === 0;
             const isWide = index === 3 || index === 4;
             
             return (
               <TiltCard
-                key={index}
+                key={`${activeFilter}-${project.title}`}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.6, delay: (index % 3) * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className={`group relative rounded-3xl overflow-hidden bg-[var(--bg-secondary)] border border-[var(--border)] shadow-xl
+                className={`group relative rounded-2xl overflow-hidden glass-card shadow-xl gradient-border-card transition-all duration-500
                   ${isLarge ? 'md:col-span-2 md:row-span-2' : ''}
                   ${!isLarge && isWide ? 'md:col-span-2 lg:col-span-2 row-span-1' : ''}
                   ${!isLarge && !isWide ? 'col-span-1 md:col-span-1 row-span-1' : ''}
@@ -232,18 +309,18 @@ const ProjectShowcase = () => {
                 <MacOsButtons />
                 
                 {/* Image Background */}
-                <div className="absolute inset-0 w-full h-full overflow-hidden opacity-60 group-hover:opacity-40 transition-opacity duration-500" style={{ transform: 'translateZ(-50px)' }}>
+                <div className="absolute inset-0 w-full h-full overflow-hidden opacity-50 group-hover:opacity-30 transition-opacity duration-500" style={{ transform: 'translateZ(-50px)' }}>
                   <img
                     src={project.image}
                     alt={project.title}
                     className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-primary)] via-[#0d0d12]/80 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-primary)] via-[var(--bg-primary)]/80 to-transparent" />
                 </div>
 
                 {/* Content Overlay */}
-                <div className="absolute inset-0 p-8 flex flex-col justify-end" style={{ transform: 'translateZ(50px)' }}>
-                  <h3 className="text-2xl font-display font-bold text-white mb-2 group-hover:text-[var(--secondary)] transition-colors">
+                <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end relative z-10" style={{ transform: 'translateZ(50px)' }}>
+                  <h3 className="text-xl md:text-2xl font-display font-bold text-white mb-2 group-hover:text-[var(--accent)] transition-colors duration-300">
                     {project.title}
                   </h3>
                   
@@ -253,11 +330,11 @@ const ProjectShowcase = () => {
 
                   {isLarge && (
                     <div className="mb-4 grid gap-2 text-xs font-body text-[var(--text-secondary)] sm:grid-cols-2">
-                      <div className="rounded-lg border border-[var(--border)] bg-[var(--bg-primary)]/70 p-3">
+                      <div className="rounded-xl border border-[var(--border)] bg-[var(--bg-primary)]/70 p-3 backdrop-blur-sm">
                         <span className="block text-[var(--secondary)] font-semibold mb-1">Problem</span>
                         <span className="line-clamp-2">{project.problem}</span>
                       </div>
-                      <div className="rounded-lg border border-[var(--border)] bg-[var(--bg-primary)]/70 p-3">
+                      <div className="rounded-xl border border-[var(--border)] bg-[var(--bg-primary)]/70 p-3 backdrop-blur-sm">
                         <span className="block text-[var(--accent)] font-semibold mb-1">Impact</span>
                         <span className="line-clamp-2">{project.impact}</span>
                       </div>
@@ -268,7 +345,7 @@ const ProjectShowcase = () => {
                     {project.tags.slice(0, 3).map((tag, tagIndex) => (
                       <span
                         key={tagIndex}
-                        className="px-2 py-1 text-xs font-body rounded-md bg-[var(--bg-primary)]/80 text-[var(--text-primary)] border border-[var(--border)] backdrop-blur-sm"
+                        className="px-2.5 py-1 text-xs font-mono rounded-lg bg-[var(--bg-primary)]/80 text-[var(--text-primary)] border border-[var(--border)] backdrop-blur-sm"
                       >
                         {tag}
                       </span>
@@ -276,19 +353,19 @@ const ProjectShowcase = () => {
                   </div>
 
                   {/* Links */}
-                  <div className="flex items-center gap-4 opacity-100 translate-y-0 md:opacity-0 md:group-hover:opacity-100 md:transform md:translate-y-4 md:group-hover:translate-y-0 transition-all duration-300">
+                  <div className="flex items-center gap-3 opacity-100 translate-y-0 md:opacity-0 md:group-hover:opacity-100 md:transform md:translate-y-4 md:group-hover:translate-y-0 transition-all duration-300">
                     {project.links.github && (
-                      <a href={project.links.github} target="_blank" rel="noopener noreferrer" aria-label={`Open ${project.title} GitHub repository`} className="p-2 rounded-full bg-[var(--accent)] text-white hover:scale-110 transition-transform shadow-[0_0_15px_var(--accent-muted)]">
-                        <Github size={18} />
+                      <a href={project.links.github} target="_blank" rel="noopener noreferrer" aria-label={`Open ${project.title} GitHub repository`} className="p-2.5 rounded-xl bg-[var(--accent)] text-white hover:scale-110 transition-all duration-300 shadow-[0_0_15px_var(--accent-muted)]">
+                        <Github size={16} />
                       </a>
                     )}
                     {project.links.demo && (
-                      <a href={project.links.demo} target="_blank" rel="noopener noreferrer" aria-label={`Open ${project.title} live demo`} className="p-2 rounded-full bg-[var(--text-primary)] text-[var(--bg-primary)] hover:scale-110 transition-transform">
-                        <ExternalLink size={18} />
+                      <a href={project.links.demo} target="_blank" rel="noopener noreferrer" aria-label={`Open ${project.title} live demo`} className="p-2.5 rounded-xl bg-white text-[var(--bg-primary)] hover:scale-110 transition-all duration-300">
+                        <ExternalLink size={16} />
                       </a>
                     )}
                     {project.status && (
-                      <span className="rounded-full border border-[var(--border)] bg-[var(--bg-primary)]/80 px-3 py-2 font-body text-xs text-[var(--text-secondary)] backdrop-blur-sm">
+                      <span className="rounded-xl border border-[var(--border)] bg-[var(--bg-primary)]/80 px-3 py-2 font-mono text-xs text-[var(--text-secondary)] backdrop-blur-sm">
                         {project.status}
                       </span>
                     )}
@@ -297,24 +374,29 @@ const ProjectShowcase = () => {
               </TiltCard>
             );
           })}
-        </div>
+        </SpotlightGrid>
 
         {/* Pagination Controls */}
-        <div className="flex justify-center mt-16 space-x-3">
-          {pageNumbers.map(number => (
-            <button
-              key={number}
-              onClick={() => setCurrentPage(number)}
-              className={`w-10 h-10 rounded-xl flex items-center justify-center font-display font-semibold transition-all duration-300 hover-lift ${
-                currentPage === number
-                  ? "bg-[var(--accent)] text-white shadow-[0_0_15px_var(--accent-muted)]"
-                  : "bg-[var(--bg-secondary)] border border-[var(--border)] text-[var(--text-secondary)] hover:text-white"
-              }`}
-            >
-              {number}
-            </button>
-          ))}
-        </div>
+        {pageNumbers.length > 1 && (
+          <div className="flex justify-center mt-16 space-x-3">
+            {pageNumbers.map(number => (
+              <button
+                key={number}
+                onClick={() => {
+                  setCurrentPage(number);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className={`w-11 h-11 rounded-xl flex items-center justify-center font-display font-semibold transition-all duration-300 hover-lift ${
+                  currentPage === number
+                    ? "bg-[var(--accent)] text-white shadow-[0_0_20px_var(--accent-muted)]"
+                    : "bg-[var(--bg-secondary)] border border-[var(--border)] text-[var(--text-secondary)] hover:text-white hover:border-[var(--accent)]/30"
+                }`}
+              >
+                {number}
+              </button>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
