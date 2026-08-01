@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { Github, Linkedin, Mail, Download, Briefcase, Terminal, Sparkles } from "lucide-react";
+import { Github, Linkedin, Mail, Download, Briefcase, Terminal, Sparkles, Cpu, Cloud } from "lucide-react";
 import resume from "../assets/Varun_resume.pdf";
 import NeuralParticles from "./NeuralParticles";
+import globeGif from "../assets/globe.gif";
 
 // ── AI Terminal Component ─────────────────────────────────
 const AITerminal = ({ onComplete }) => {
@@ -103,58 +104,106 @@ const AITerminal = ({ onComplete }) => {
   );
 };
 
-// ── Animated Gradient Orb ─────────────────────────────────
-const GradientOrb = () => {
+// ── Hero Globe Visual (renders globe.gif) ────────────────
+const HeroGlobeVisual = () => {
   return (
-    <div className="relative w-full h-[500px] flex items-center justify-center pointer-events-none hidden lg:flex">
-      {/* Outer glow */}
-      <div className="absolute w-[350px] h-[350px] rounded-full bg-[var(--accent)]/10 blur-[80px] animate-pulse-slow" />
+    <div className="relative w-full h-[520px] flex items-center justify-center hidden lg:flex">
+      {/* Outer ambient glowing orb */}
+      <div className="absolute w-[400px] h-[400px] rounded-full bg-gradient-to-tr from-[var(--accent)]/25 via-[var(--accent-glow)]/20 to-[var(--secondary)]/25 blur-[90px] animate-pulse-slow pointer-events-none" />
 
-      {/* Main orb */}
-      <motion.div
-        animate={{
-          scale: [1, 1.05, 0.98, 1.02, 1],
-          rotate: [0, 90, 180, 270, 360],
-        }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          ease: "linear",
-        }}
-        className="relative w-[280px] h-[280px]"
-      >
-        <div
-          className="absolute inset-0 rounded-full opacity-80"
-          style={{
-            background:
-              "conic-gradient(from 0deg, #6366f1, #a855f7, #06b6d4, #6366f1)",
-            filter: "blur(1px)",
-          }}
-        />
-        <div className="absolute inset-[3px] rounded-full bg-[var(--bg-primary)]" />
-        <div
-          className="absolute inset-[3px] rounded-full opacity-60"
-          style={{
-            background:
-              "radial-gradient(circle at 30% 30%, rgba(99, 102, 241, 0.3), transparent 60%), radial-gradient(circle at 70% 70%, rgba(168, 85, 247, 0.2), transparent 50%)",
-          }}
-        />
-      </motion.div>
-
-      {/* Inner glow */}
-      <div className="absolute w-[200px] h-[200px] rounded-full bg-gradient-to-br from-[var(--accent)]/20 to-[var(--accent-glow)]/10 blur-[40px]" />
-
-      {/* Floating rings */}
+      {/* Rotating background neural rings */}
       <motion.div
         animate={{ rotate: 360 }}
-        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-        className="absolute w-[380px] h-[380px] rounded-full border border-[var(--accent)]/10"
+        transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
+        className="absolute w-[460px] h-[460px] rounded-full border border-dashed border-[var(--accent)]/20 pointer-events-none"
       />
       <motion.div
         animate={{ rotate: -360 }}
         transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-        className="absolute w-[440px] h-[440px] rounded-full border border-dashed border-[var(--secondary)]/8"
+        className="absolute w-[390px] h-[390px] rounded-full border border-[var(--secondary)]/20 pointer-events-none"
       />
+
+      {/* Center Globe GIF Container */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.85 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+        className="relative group flex items-center justify-center"
+      >
+        {/* Glow halo around GIF */}
+        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[var(--accent)] via-[var(--accent-glow)] to-[var(--secondary)] opacity-50 blur-2xl group-hover:opacity-80 transition-opacity duration-500" />
+
+        {/* Globe GIF element */}
+        <div className="relative w-[340px] h-[340px] rounded-full overflow-hidden border border-white/20 shadow-[0_0_50px_rgba(99,102,241,0.3)] bg-[#09090b]">
+          <img
+            src={globeGif}
+            alt="Interactive AI Globe"
+            className="w-full h-full object-cover mix-blend-screen scale-[1.6]"
+          />
+          {/* Subtle vignette layer */}
+          <div className="absolute inset-0 rounded-full bg-radial-vignette pointer-events-none opacity-40" />
+        </div>
+      </motion.div>
+
+      {/* Floating Badge 1 — Top Left */}
+      <motion.div
+        animate={{ y: [-6, 6, -6] }}
+        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-6 left-0 z-20 glass-card px-4 py-2.5 rounded-2xl border border-white/15 shadow-xl flex items-center gap-3 backdrop-blur-2xl"
+      >
+        <div className="w-8 h-8 rounded-xl bg-[var(--accent)]/20 border border-[var(--accent)]/40 flex items-center justify-center text-[var(--accent)]">
+          <Sparkles className="w-4 h-4" />
+        </div>
+        <div>
+          <p className="font-display text-xs font-bold text-white">AI Solutions</p>
+          <p className="font-mono text-[10px] text-[var(--text-secondary)]">LangChain & RAG</p>
+        </div>
+      </motion.div>
+
+      {/* Floating Badge 2 — Bottom Right */}
+      <motion.div
+        animate={{ y: [6, -6, 6] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute bottom-4 right-0 z-20 glass-card px-4 py-2.5 rounded-2xl border border-white/15 shadow-xl flex items-center gap-3 backdrop-blur-2xl"
+      >
+        <div className="w-8 h-8 rounded-xl bg-[var(--secondary)]/20 border border-[var(--secondary)]/40 flex items-center justify-center text-[var(--secondary)]">
+          <Terminal className="w-4 h-4" />
+        </div>
+        <div>
+          <p className="font-display text-xs font-bold text-white">Full-Stack Tech</p>
+          <p className="font-mono text-[10px] text-[var(--text-secondary)]">React • Node • Python</p>
+        </div>
+      </motion.div>
+
+      {/* Floating Badge 3 — Top Right */}
+      <motion.div
+        animate={{ y: [-6, 6, -6] }}
+        transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+        className="absolute top-24 right-0 z-20 glass-card px-4 py-2.5 rounded-2xl border border-white/15 shadow-xl flex items-center gap-3 backdrop-blur-2xl"
+      >
+        <div className="w-8 h-8 rounded-xl bg-[var(--accent)]/20 border border-[var(--accent)]/40 flex items-center justify-center text-[var(--accent)]">
+          <Cpu className="w-4 h-4" />
+        </div>
+        <div>
+          <p className="font-display text-xs font-bold text-white">AI/ML</p>
+          <p className="font-mono text-[10px] text-[var(--text-secondary)]">PyTorch • LLMs</p>
+        </div>
+      </motion.div>
+
+      {/* Floating Badge 4 — Bottom Left */}
+      <motion.div
+        animate={{ y: [6, -6, 6] }}
+        transition={{ duration: 6.5, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
+        className="absolute bottom-20 left-0 z-20 glass-card px-4 py-2.5 rounded-2xl border border-white/15 shadow-xl flex items-center gap-3 backdrop-blur-2xl"
+      >
+        <div className="w-8 h-8 rounded-xl bg-[var(--secondary)]/20 border border-[var(--secondary)]/40 flex items-center justify-center text-[var(--secondary)]">
+          <Cloud className="w-4 h-4" />
+        </div>
+        <div>
+          <p className="font-display text-xs font-bold text-white">Cloud & DevOps</p>
+          <p className="font-mono text-[10px] text-[var(--text-secondary)]">AWS • Docker</p>
+        </div>
+      </motion.div>
     </div>
   );
 };
@@ -469,7 +518,7 @@ export default function Hero() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
               >
-                <GradientOrb />
+                <HeroGlobeVisual />
               </motion.div>
             )}
           </div>
