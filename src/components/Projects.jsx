@@ -117,7 +117,7 @@ const ProjectShowcase = () => {
       impact: "Built a RAG-powered chat experience for fast, accurate answers from multiple uploaded documents.",
       tags: ["Python", "Streamlit", "RAG", "FAISS"],
       category: "AI",
-      links: { github: "https://github.com/VarunWeb6/Multi-PDFs_ChatApp_AI-Agent.git", demo: "https://multi-pdfschatappai-agentgit-id5yaoecfvuyjxc4wew4z8.streamlit.app/" },
+      links: { github: "https://github.com/VarunWeb6/Multi-PDFs_ChatApp_AI-Agent.git", demo: "https://multi-pdfschatappai-agent-rws6nndsbtt6gyrjc8zjfw.streamlit.app/" },
       image: MultiPDFChat
     },
     {
