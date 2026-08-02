@@ -12,7 +12,8 @@ import Dashboard from "../assets/images/dashboard.png";
 import ServerGenerator from "../assets/images/servergenerator.png";
 import JobTracker from "../assets/images/job-tracker.png";
 import KBHUB from "../assets/images/kb-hub.png";
-import EcomImg from "../assets/images/ecom.png"
+import EcomImg from "../assets/images/ecom.png";
+import MultiPDFChat from "../assets/images/multipdf_chat.png";
 
 const MacOsButtons = () => (
   <div className="flex gap-2 mb-4 absolute top-4 left-4 z-20">
@@ -109,6 +110,16 @@ const ProjectShowcase = () => {
   const projectsPerPage = 6;
 
   const projects = [
+    {
+      title: "Multi PDF Chat Application",
+      description: "A multi-PDF chat application that lets you upload multiple documents and ask questions in natural language.",
+      problem: "Users need a simple way to query content across several PDFs without manually reading each document.",
+      impact: "Built a RAG-powered chat experience for fast, accurate answers from multiple uploaded documents.",
+      tags: ["Python", "Streamlit", "RAG", "FAISS"],
+      category: "AI",
+      links: { github: "https://github.com/VarunWeb6/Multi-PDFs_ChatApp_AI-Agent.git", demo: "https://multi-pdfschatappai-agentgit-id5yaoecfvuyjxc4wew4z8.streamlit.app/" },
+      image: MultiPDFChat
+    },
     {
       title: "Shoekart",
       description: "Welcome to Shoekart – where style meets comfort! Shoekart is an e-commerce platform dedicated to buying shoes.",
